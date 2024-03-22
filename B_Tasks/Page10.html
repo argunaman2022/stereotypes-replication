@@ -1,5 +1,5 @@
 {{ block title }}
-    Exit survey
+    Player choice 1
 {{ endblock }}
 
 {{ block content }}
@@ -7,6 +7,10 @@
 <link rel="stylesheet" href="{{static 'css/modal.css'}}">
 <script type="text/javascript" src="{{ static 'js/Script_modal.js' }}"></script>
 <script type="text/javascript" src="{{ static 'js/data_quality.js' }}"></script>
+
+    <p>
+       Some text if you want. Player is in {{Treatment}}
+    </p>
 
 {% for field in form %}
     {% if field.name not in hidden_fields %}
@@ -21,9 +25,6 @@
         {% endif %}
     {% endfor %}
 </div>
-
-
-
     <br><br>
 
     <div class="buttons-container">
@@ -38,7 +39,7 @@
           <div class="modal-header">
             <h2>You are about to quit the study</h2>
           </div>
-       {{include C.Quit_study_text_path}}
+{{include C.Quit_study_text_path}}
         <div class="buttons-container">
             <a id="myBtn" onclick="span_click(2)"  class="otree-btn-next btn btn-primary">Cancel</a>
             <a href="{{C.Return_redirect}}" class="otree-btn-next btn btn-primary">OK</a>

@@ -1,7 +1,7 @@
 from os import environ
 
 SESSION_CONFIGS = [
-    dict(name='Study', app_sequence=['Introduction','Survey', 'Exit_Survey', 'Results'], num_demo_participants=200,
+    dict(name='Study', app_sequence=['A_Introduction','B_Tasks', 'Z_Results'], num_demo_participants=200,
          completionlink='prolific completion link!!!!!!'), #TODO: add the proper completion link from prolific
 
 ]

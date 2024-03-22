@@ -1,5 +1,5 @@
 {{ block title }}
-    Pilot - feedback
+    Player choice 1
 {{ endblock }}
 
 {{ block content }}
@@ -8,14 +8,9 @@
 <script type="text/javascript" src="{{ static 'js/Script_modal.js' }}"></script>
 <script type="text/javascript" src="{{ static 'js/data_quality.js' }}"></script>
 
-<p>
-    The study you took part in is a pilot study. 
-    We use pilots to ensure that that the questions are clear.
-    We kindly ask for your feedback in the questions below.
-    Please help us improve this study. 
- </p>
-
-
+    <p>
+       Some text if you want. Player is in {{Treatment}}
+    </p>
 
 {% for field in form %}
     {% if field.name not in hidden_fields %}
@@ -30,12 +25,8 @@
         {% endif %}
     {% endfor %}
 </div>
-
-
-
-
-
     <br><br>
+
     <div class="buttons-container">
         <a id="myBtn" onclick="open_modal(2)"  class="otree-btn-next btn btn-primary">Exit Survey (Return task)</a>
         <a id="myBtn" onclick="open_modal(1)"  class="otree-btn-next btn btn-primary">Instructions</a>
@@ -48,7 +39,7 @@
           <div class="modal-header">
             <h2>You are about to quit the study</h2>
           </div>
-     {{include C.Quit_study_text_path}}
+{{include C.Quit_study_text_path}}
         <div class="buttons-container">
             <a id="myBtn" onclick="span_click(2)"  class="otree-btn-next btn btn-primary">Cancel</a>
             <a href="{{C.Return_redirect}}" class="otree-btn-next btn btn-primary">OK</a>

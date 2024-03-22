@@ -59,7 +59,16 @@ class MyBasePage(Page):
                 'Instructions': C.Instructions_path} 
   
 # Pages
-class MyPage(MyBasePage):
+class Attention_check_2(MyBasePage):         
+    extra_fields = ['Attention_2']
+    form_fields = MyBasePage.form_fields + extra_fields
+    
+    def before_next_page(player: Player, timeout_happened=False):
+        if (not player.Attention_2 and not player.participant.vars['Attention_1']):
+            player.participant.vars['Allowed'] = False
+            player.participant.vars['Attention_passed'] = False
+            
+class Page1(MyBasePage):
     extra_fields = ['Survey_1'] 
     form_fields = MyBasePage.form_fields + extra_fields
     
@@ -70,18 +79,12 @@ class MyPage(MyBasePage):
         # Add or modify variables specific to ExtendedPage
         variables['Treatment'] = player.participant.Treatment
         return variables
-
-
-class Attention_check_2(MyBasePage):         
-    extra_fields = ['Attention_2']
-    form_fields = MyBasePage.form_fields + extra_fields
     
-    def before_next_page(player: Player, timeout_happened=False):
-        if (not player.Attention_2 and not player.participant.vars['Attention_1']):
-            player.participant.vars['Allowed'] = False
-            player.participant.vars['Attention_passed'] = False
-  
+    
+
+            
+  # add back Page2, Page3, Page4, Page5, Page6, Page7, Page8, Page9, Page10, Page11, Page12, Page13, Page14, Page15,
 page_sequence = [
-    MyPage,
+    Page1, 
     Attention_check_2,
     ]
