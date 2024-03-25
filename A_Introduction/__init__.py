@@ -27,10 +27,18 @@ class C(BaseConstants):
     Instructions_path = "_templates/global/Instructions.html"
     Quit_study_text_path = "_templates/global/Quit_study_text.html"
     # Treatment quotas. This will be copied to the session variable.
-    #TODO: Treatments: if you dont have treatments assign everyone to the same treatment, rename it Control if you want.
     quotas = {
-    'Treatment_1': 0,
-    'Treatment_2' : 0,
+    'Math_Game1': 0,
+    'Math_Game2': 0,
+    'Math_Game3': 0,
+    'Math_Game4': 0,
+    'Math_Game5': 0,
+    'Memory_Game1': 0,
+    'Memory_Game2': 0,
+    'Memory_Game3': 0,
+    'Memory_Game4': 0,
+    'Memory_Game5': 0,
+    
     }
     
 class Subsession(BaseSubsession):
