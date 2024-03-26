@@ -9,7 +9,7 @@ let game_field_name = js_vars.game_field_name;
 
 
 var Source = "#boxcard"; // Selector for the card container element
-
+// TODO: proper shuffling.
 var ImgSource = [
   "http://img5.uploadhouse.com/fileuploads/17699/176992640c06707c66a5c0b08a2549c69745dc2c.png",
   "http://img6.uploadhouse.com/fileuploads/17699/17699263b01721074bf094aa3bc695aa19c8d573.png",
