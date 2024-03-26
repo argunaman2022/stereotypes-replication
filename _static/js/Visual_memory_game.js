@@ -11,42 +11,50 @@ console.log('visual memory loaded')
 var Source = "#boxcard"; // Selector for the card container element
 // TODO: proper shuffling.
 var ImgSource1 = [
-  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Math_memory_boxes/Box%201/3_part_1.png",
-  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Math_memory_boxes/Box%201/3_part_2.png",
- 
-  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Math_memory_boxes/Box%201/4_part_1.png",
-  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Math_memory_boxes/Box%201/4_part_2.png",
- 
-  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Math_memory_boxes/Box%201/5_part_1.png",
+  
+  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Visual_memory_boxes/Box%201/animal1.jpg",
+  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Visual_memory_boxes/Box%201/animal2.jpg",
+  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Visual_memory_boxes/Box%201/animal3.jpg",
+  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Visual_memory_boxes/Box%201/animal4.jpg",
+  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Visual_memory_boxes/Box%201/animal5.jpg",
+  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Visual_memory_boxes/Box%201/animal6.jpg",
   
 ];
 var ImgSource2 = [
-  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Math_memory_boxes/Box%202/3_part_1.png",
-  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Math_memory_boxes/Box%202/3_part_2.png",
- 
-  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Math_memory_boxes/Box%202/4_part_1.png",
-  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Math_memory_boxes/Box%202/4_part_2.png",
- 
-  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Math_memory_boxes/Box%202/11_part_1.png",
+  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Visual_memory_boxes/Box%201/animal1.jpg",
+  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Visual_memory_boxes/Box%201/animal2.jpg",
+  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Visual_memory_boxes/Box%201/animal3.jpg",
+  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Visual_memory_boxes/Box%201/animal4.jpg",
+  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Visual_memory_boxes/Box%201/animal5.jpg",
+  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Visual_memory_boxes/Box%201/animal6.jpg",
   
 ];
 var ImgSource3 = [
-  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Math_memory_boxes/Box%203/5_part_1.png",
-  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Math_memory_boxes/Box%203/5_part_2.png",
- 
-  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Math_memory_boxes/Box%203/6_part_1.png",
-  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Math_memory_boxes/Box%203/6_part_2.png",
- 
-  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Math_memory_boxes/Box%203/10_part_1.png",
+  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Visual_memory_boxes/Box%201/animal1.jpg",
+  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Visual_memory_boxes/Box%201/animal2.jpg",
+  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Visual_memory_boxes/Box%201/animal3.jpg",
+  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Visual_memory_boxes/Box%201/animal4.jpg",
+  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Visual_memory_boxes/Box%201/animal5.jpg",
+  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Visual_memory_boxes/Box%201/animal6.jpg",
 ];
 var ImgSource4 = [
-  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Math_memory_boxes/Box%204/6_part_1.png",
-  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Math_memory_boxes/Box%204/6_part_2.png",
- 
-  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Math_memory_boxes/Box%204/7_part_1.png",
-  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Math_memory_boxes/Box%204/7_part_2.png",
- 
-  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Math_memory_boxes/Box%204/8_part_1.png",
+
+  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Visual_memory_boxes/Box%201/Box%204/animal1.jpg",
+  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Visual_memory_boxes/Box%201/Box%204/animal2.jpg",
+  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Visual_memory_boxes/Box%201/Box%204/animal3.jpg",
+  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Visual_memory_boxes/Box%201/Box%204/animal4.jpg",
+  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Visual_memory_boxes/Box%201/Box%204/animal5.jpg",
+  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Visual_memory_boxes/Box%201/Box%204/animal6.jpg",
+  
+];
+var ImgSource5 = [
+
+  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Visual_memory_boxes/Box%201/animal1.jpg",
+  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Visual_memory_boxes/Box%201/animal2.jpg",
+  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Visual_memory_boxes/Box%201/animal3.jpg",
+  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Visual_memory_boxes/Box%201/animal4.jpg",
+  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Visual_memory_boxes/Box%201/animal5.jpg",
+  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Visual_memory_boxes/Box%201/animal6.jpg",
   
 ];
 
@@ -91,6 +99,9 @@ function image_source() {
   }
   else if (BoxesSolved == 3) {
     return ImgSource4;
+  }
+  else if (BoxesSolved == 4) {
+    return ImgSource5;
   }
   else {
     // break out of loop and display final message
