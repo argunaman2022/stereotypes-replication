@@ -11,7 +11,7 @@ let game_field_name = js_vars.game_field_name;
 var Source = "#boxcard"; // Selector for the card container element
 
 var ImgSource = [
-  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Math_memory_boxes/Box%201/14_part_1.png",
+  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Math_memory_boxes/Box%201/3_part_1_small.png",
   "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Math_memory_boxes/Box%201/14_part_2.png",
   // "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Math_memory_boxes/Box%201/3_part_2.png",
   // "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Math_memory_boxes/Box%201/3_part_1.png",
