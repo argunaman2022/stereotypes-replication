@@ -5,6 +5,8 @@ var Counter = 0;    // Number of player moves
 var ImgFound = 0;   // Number of matching pairs found
 var BoxesSolved = 0; // Number of boxes solved
 var Max_boxes = 2 // Number of boxes to solve to complete the game TODO: change to 4 or make it dynamic
+let game_field_name = js_vars.game_field_name;
+
 
 var Source = "#boxcard"; // Selector for the card container element
 
@@ -29,6 +31,9 @@ var ImgSource2 = [
   "http://img2.uploadhouse.com/fileuploads/17699/1769925824ea93cbb77ba9e95c1a4cec7f89b80c.png",
   "http://img7.uploadhouse.com/fileuploads/17699/1769925708af4fb3c954b1d856da1f4d4dcd548a.png",
 ];
+
+var ImgSource3 = [
+  
 
 // Helper function to generate random numbers
 function RandomFunction(MaxValue, MinValue) {
@@ -128,7 +133,6 @@ function OpenCard() {
     $("#counter").html("" + Counter); 
     
     // get the num_images from the html and change its value to ImgFound
-    let game_field_name = js_vars.game_field_name;
     document.getElementById(game_field_name).value = ImgFound;
 
 
@@ -141,21 +145,8 @@ function OpenCard() {
         BoxesSolved++;
         resetGame(); 
       }
-      
-      
     }
-
   }
-  
-
-}
-
-function revealAllCards() {
-  $(Source + " img").show(); 
-}
-
-function hideAllCards() {
-  $(Source + " img").hide(); 
 }
 
 
@@ -169,10 +160,4 @@ for (var y = 1; y < 3 ; y++) {
 }
 	$(Source + " div").click(OpenCard);
 	ShuffleImages();
-  revealAllCards();  // Show the cards initially
-
-  setTimeout(function() { 
-     hideAllCards();  
-     $(Source + " div").click(OpenCard); // Bind the click handler after the preview
-  }, 2000); // 2-second delay
 });
