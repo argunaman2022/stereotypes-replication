@@ -13,7 +13,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     if (!myDictionary) { 
         // If it doesn't exist, create and save it
-        console.log('creating')
         myDictionary = {
             page: 0,
           };
@@ -28,9 +27,7 @@ count=0
 // TODO: test this with other browsers
 window.addEventListener('blur', function() {
     // Code to save that the user clicked out of the window
-    console.log('blur event detected in page:')
     count ++
-    console.log(count)
     let page = window.location.href;
 
     let blur_data = localStorage.getItem('dictionary'); //retrieve 
@@ -39,11 +36,9 @@ window.addEventListener('blur', function() {
     // Check if the 'page' key exists in the dictionary
     if (page in myDictionary) {
         // If yes, increment its value
-        console.log('incrementing page')
         myDictionary[page]++;
     } else {
         // If not, set it to 0 (or any default value)
-        console.log('setting page to 1')
         myDictionary[page] = 1;
     }
 
@@ -51,7 +46,6 @@ window.addEventListener('blur', function() {
     localStorage.setItem('dictionary', JSON.stringify(myDictionary));
 
     // Use the updated dictionary as needed
-    console.log(myDictionary);
 
     document.getElementById('id_blur_event_counts').value = JSON.stringify(myDictionary);
        

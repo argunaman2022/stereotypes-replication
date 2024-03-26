@@ -4,41 +4,88 @@ var ImgOpened = ""; // Image source of the first opened card
 var Counter = 0;    // Number of player moves
 var ImgFound = 0;   // Number of matching pairs found
 var BoxesSolved = 0; // Number of boxes solved
-var Max_boxes = 2 // Number of boxes to solve to complete the game TODO: change to 4 or make it dynamic
+var Max_boxes = 4 // Number of boxes to solve to complete the game 
 let game_field_name = js_vars.game_field_name;
+console.log('math memory loaded')
 
 
 var Source = "#boxcard"; // Selector for the card container element
-
-var ImgSource = [
+var ImgSource1 = [
+  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Math_memory_boxes/Box%201/3_part_1.png",
+  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Math_memory_boxes/Box%201/3_part_2.png",
+ 
+  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Math_memory_boxes/Box%201/4_part_1.png",
+  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Math_memory_boxes/Box%201/4_part_2.png",
+ 
+  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Math_memory_boxes/Box%201/5_part_1.png",
+  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Math_memory_boxes/Box%201/5_part_2.png",
+ 
+  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Math_memory_boxes/Box%201/7_part_1.png",
+  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Math_memory_boxes/Box%201/7_part_2.png",
+ 
+  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Math_memory_boxes/Box%201/9_part_1.png",
+  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Math_memory_boxes/Box%201/9_part_2.png",
+ 
   "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Math_memory_boxes/Box%201/14_part_1.png",
   "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Math_memory_boxes/Box%201/14_part_2.png",
-  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Math_memory_boxes/Box%201/3_part_2.png",
-  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Math_memory_boxes/Box%201/3_part_1.png",
-  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Math_memory_boxes/Box%201/4_part_2.png",
-  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Math_memory_boxes/Box%201/4_part_1.png",
-  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Math_memory_boxes/Box%201/5_part_2.png",
-  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Math_memory_boxes/Box%201/5_part_1.png",
-  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Math_memory_boxes/Box%201/7_part_2.png",
-  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Math_memory_boxes/Box%201/7_part_2.png",
-  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Math_memory_boxes/Box%201/9_part_2.png",
-  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Math_memory_boxes/Box%201/9_part_2.png",
 ];
-
 var ImgSource2 = [
-  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Math_memory_boxes/Box%202/11_part_3.png",
-  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Math_memory_boxes/Box%202/11_part_4.png",
+  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Math_memory_boxes/Box%202/3_part_1.png",
+  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Math_memory_boxes/Box%202/3_part_2.png",
+ 
+  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Math_memory_boxes/Box%202/4_part_1.png",
+  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Math_memory_boxes/Box%202/4_part_2.png",
+ 
+  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Math_memory_boxes/Box%202/11_part_1.png",
+  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Math_memory_boxes/Box%202/11_part_2.png",
+ 
+  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Math_memory_boxes/Box%202/7_part_1.png",
+  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Math_memory_boxes/Box%202/7_part_2.png",
+ 
   "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Math_memory_boxes/Box%202/12_part_1.png",
   "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Math_memory_boxes/Box%202/12_part_2.png",
+ 
   "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Math_memory_boxes/Box%202/15_part_1.png",
   "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Math_memory_boxes/Box%202/15_part_2.png",
-  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Math_memory_boxes/Box%202/16_part_1.png",
-  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Math_memory_boxes/Box%202/16_part_2.png",
-  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Math_memory_boxes/Box%202/3_part_3.png",
-  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Math_memory_boxes/Box%202/3_part_4.png",
-  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Math_memory_boxes/Box%202/4_part_3.png",
-  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Math_memory_boxes/Box%202/4_part_4.png",
-]
+];
+var ImgSource3 = [
+  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Math_memory_boxes/Box%203/5_part_1.png",
+  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Math_memory_boxes/Box%203/5_part_2.png",
+ 
+  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Math_memory_boxes/Box%203/6_part_1.png",
+  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Math_memory_boxes/Box%203/6_part_2.png",
+ 
+  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Math_memory_boxes/Box%203/10_part_1.png",
+  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Math_memory_boxes/Box%203/10_part_2.png",
+ 
+  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Math_memory_boxes/Box%203/11_part_1.png",
+  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Math_memory_boxes/Box%203/11_part_2.png",
+ 
+  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Math_memory_boxes/Box%203/14_part_1.png",
+  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Math_memory_boxes/Box%203/14_part_2.png",
+ 
+  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Math_memory_boxes/Box%203/16_part_1.png",
+  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Math_memory_boxes/Box%203/16_part_2.png",
+];
+var ImgSource4 = [
+  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Math_memory_boxes/Box%204/6_part_1.png",
+  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Math_memory_boxes/Box%204/6_part_2.png",
+ 
+  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Math_memory_boxes/Box%204/7_part_1.png",
+  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Math_memory_boxes/Box%204/7_part_2.png",
+ 
+  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Math_memory_boxes/Box%204/8_part_1.png",
+  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Math_memory_boxes/Box%204/8_part_2.png",
+ 
+  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Math_memory_boxes/Box%204/9_part_1.png",
+  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Math_memory_boxes/Box%204/9_part_2.png",
+ 
+  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Math_memory_boxes/Box%204/13_part_1.png",
+  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Math_memory_boxes/Box%204/13_part_2.png",
+ 
+  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Math_memory_boxes/Box%204/14_part_1.png",
+  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Math_memory_boxes/Box%204/14_part_2.png",
+];
 
 function isImageMatch(imgSrc1, imgSrc2) {
   const baseName1 = imgSrc1.split('/').slice(-1)[0].split('_part')[0]; 
@@ -74,12 +121,34 @@ function ShuffleImages() {
 	}
 }
 
+
+function image_source() {
+  if (BoxesSolved == 0) {
+    return ImgSource1;
+  }
+  if (BoxesSolved == 1) {
+    return ImgSource2;
+  }
+  else if (BoxesSolved == 2) {
+    return ImgSource3;
+  }
+  else if (BoxesSolved == 3) {
+    return ImgSource4;
+  }
+  else {
+    // break out of loop and display final message
+    $("#transitionMessage").text("You completed all the boxes and finished this round before timer ran out. You receive maximum points from this round! Congratulations!");
+    $("#transitionMessage").show();
+    return;
+  }
+}
+
+
+
 function resetGame(){
-  ImgFound = 0;
-  Counter = 0;
-  $("#counter").html(""); // Clear the counter
   $(Source).empty();        // Remove existing cards
- 
+  ImgSource = image_source(); // Get the image source for the current box
+
   // Display transition message
   $("#transitionMessage").text("You completed the first box. Displaying the next box...");
   $("#transitionMessage").show();
@@ -87,25 +156,22 @@ function resetGame(){
   setTimeout(function() {
     $("#transitionMessage").hide();
       // Regenerate grid using ImgSource2 
-      for (var y = 1; y < 3 ; y++) {
-        $.each(ImgSource2, function(i, val) {
+
+      for (var y = 1; y < 2 ; y++) {
+        $.each(ImgSource, function(i, val) {
           $(Source).append("<div id=card" + y + i + "><img src=" + val + " />");
         });
       }
       $(Source + " div").click(OpenCard); 
       ShuffleImages(); // Shuffle the new images
-      revealAllCards();
-      setTimeout(function() { 
-        hideAllCards();  
-        $(Source + " div").click(OpenCard); 
-      }, 2000); // 2-second preview
     }
   , 2000); // 2-second delay before next box (i.e. before the new grid is displayed)
   }
-
+  
   // Function to handle card clicks
 function OpenCard() {
 	var id = $(this).attr("id"); // Get the ID of the clicked card
+  ImgSource = image_source(); // Get the image source for the current box
 
 	if ($("#" + id + " img").is(":hidden")) {
 		$(Source + " div").unbind("click", OpenCard); // Temporarily disable clicks
@@ -121,20 +187,22 @@ function OpenCard() {
     } else { // Second card of a turn
       CurrentOpened = $("#" + id + " img").attr("src");
 
-      if (isImageMatch(ImgOpened, CurrentOpened)) { // Cards don't match
-        setTimeout(function() {
-          $("#" + id + " img").slideUp('fast');
-          $("#" + BoxOpened + " img").slideUp('fast');
-          BoxOpened = "";
-          ImgOpened = "";
-        }, 400);
-      } else { // Cards match
+      if(isImageMatch(ImgOpened, CurrentOpened))
+      { // Cards match
         $("#" + id + " img").parent().css("visibility", "hidden");
         $("#" + BoxOpened + " img").parent().css("visibility", "hidden");
         ImgFound++;
         BoxOpened = "";
         ImgOpened = "";
       }
+      else{ // Cards don't match
+        setTimeout(function() {
+          $("#" + id + " img").slideUp('slow');
+          $("#" + BoxOpened + " img").slideUp('slow');
+          BoxOpened = "";
+          ImgOpened = "";
+        }, 400);
+      } 
 
       setTimeout(function() {
         $(Source + " div").bind("click", OpenCard) // Re-enable clicks after delay
@@ -148,7 +216,7 @@ function OpenCard() {
     document.getElementById(game_field_name).value = ImgFound;
 
 
-    if (ImgFound == ImgSource.length) {
+    if (ImgFound == ImgSource.length*(BoxesSolved+1)/2) {
       if (BoxesSolved == Max_boxes-1) {
         $("#transitionMessage").text("You completed all the boxes and finished this round before timer ran out! Congratulations!");
         $("#transitionMessage").show();
@@ -158,18 +226,20 @@ function OpenCard() {
         resetGame(); 
       }
     }
+    else {
+    }
   }
 }
 
 
 
 $(function() {
-  // Generate the card grid
-for (var y = 1; y < 3 ; y++) {
-	$.each(ImgSource, function(i, val) {
-		$(Source).append("<div id=card" + y + i + "><img src=" + val + " />");
-	});
+  // Generate the card grid, y<2 no duplication
+for (var y = 1; y < 2 ; y++) { 
+  $.each(ImgSource1, function(i, val) {
+    $(Source).append("<div id=card" + y + i + "><img src=" + val + " />");
+  });
 }
-	$(Source + " div").click(OpenCard);
-	ShuffleImages();
+  $(Source + " div").click(OpenCard);
+  ShuffleImages();
 });

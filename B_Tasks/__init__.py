@@ -18,7 +18,8 @@ class C(BaseConstants):
 
     Return_redirect = "https://www.wikipedia.org/" #TODO: adjust redirect
     
-    Cards_template_path = "_templates/global/Cards.html"
+    Math_memory_template_path = "_templates/global/Math_memory.html"
+    Visual_memory_template_path = "_templates/global/Visual_memory.html"
     
     Round_length = 3660
     Timer_text = "Time left to complete this round:"
@@ -142,13 +143,13 @@ class Page2(MyBasePage):
     def js_vars(player):
         return dict(
             game_name = 'Card',
-            game_field_name = 'id_game_Card_Piece_rate',
+            game_field_name = 'id_game1_Piece_rate',
         )
     
 
             
   # add back  Page3, Page4, Page5, Page6, Page7, Page8, Page9, Page10, Page11, Page12, Page13, Page14, Page15,
 page_sequence = [
-    Page1, Page2,
+    Page1, Page2, 
     Attention_check_2,
     ]
