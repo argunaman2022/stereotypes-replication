@@ -1,0 +1,54 @@
+/* * {
+	margin: 0;
+	padding: 0;
+} */
+
+#picbox {
+	margin: 0px auto;
+	width: 640px;
+}
+#boxcard {
+	display: grid;
+	grid-template-columns: repeat(4, 150px); /* Creates 4 columns of 150px each */
+	gap: 18px; /* This sets both the row and column gap. Adjust the value to increase the distance */
+	margin: 0 auto; /* Center the grid in its container */
+}
+#boxcard div {
+	width: 150px; /* Adjust if necessary, but should match the grid-template-columns size */
+	height: 135px;
+	padding: 5px;
+	border: 4px solid #EE872A;
+	cursor: pointer;
+	border-radius: 10px;
+	box-shadow: 0 1px 5px rgba(0,0,0,.5);
+	background: #B1B1B1;
+	position: relative; /* Ensures z-index is applied correctly */
+}
+#boxcard div img {
+	width: 100%; /* Ensure the image fills the div */
+	height: auto; /* Maintain aspect ratio */
+	border-radius: 10px;
+	display: none; /* Keep this if you want the images to be hidden initially */
+}
+#boxbuttons {
+	text-align: center;
+	margin: 20px;
+	display: block;
+}
+#boxbuttons .button {
+	text-transform: uppercase;
+	background: #EE872A;
+	padding: 5px 10px;
+	margin: 5px;
+	border-radius: 10px;
+	cursor: pointer;
+}
+#boxbuttons .button:hover {
+	background: #999;
+}
+
+
+
+
+
+
