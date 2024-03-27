@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Game</title>
+    
+    <link rel="stylesheet" href="{{static 'css/ChangeDetection.css'}}">
+</head>
+
+<body>
+
+    <p>Description of the game. Two pics and 10 differences in each etc. </p>
+
+    
+<div class="gameContainer">
+    <strong style="text-align: center;">First image.</strong> <br>
+    <p>
+        Find the differences between the two images. Enter the grid numbers with differences in the input box below.
+    </p>
+    <!-- TODO: put these online -->
+    <div class="two-images">
+        <div class="imageContainer">
+            <img src="{{ static 'pics/Change_detection/Pic1_left.png' }}" alt="Original Image" id="image1">
+        </div>
+
+        <div class="imageContainer">
+            <img src="{{ static 'pics/Change_detection/Pic1_right.png' }}" alt="Modified Image" id="image2">
+        </div>
+    </div>
+
+    <div>
+        <div class="imageContainer">
+            <img src="{{ static 'pics/Change_detection/Pic1_grid.png' }}" alt="Original Image" id="image1">
+        </div>
+    </div>
+
+    <div>
+        <p>
+            Enter the cell numbers with differences in the input box below. You have at most 10 differences to find.
+        </p>
+        <div class='answer-box'>
+            <input type="number" id="differenceInput" class='input_box' placeholder="cell No. # is different"/>
+            <input type="number" id="differenceInput" class='input_box' placeholder="cell No. # is different"/>
+            <input type="number" id="differenceInput" class='input_box' placeholder="cell No. # is different"/>
+            <input type="number" id="differenceInput" class='input_box' placeholder="cell No. # is different"/>
+            <input type="number" id="differenceInput" class='input_box' placeholder="cell No. # is different"/>
+            <input type="number" id="differenceInput" class='input_box' placeholder="cell No. # is different"/>
+            <input type="number" id="differenceInput" class='input_box' placeholder="cell No. # is different"/>
+            <input type="number" id="differenceInput" class='input_box' placeholder="cell No. # is different"/>
+            <input type="number" id="differenceInput" class='input_box' placeholder="cell No. # is different"/>
+            <input type="number" id="differenceInput" class='input_box' placeholder="cell No. # is different"/>
+        </div>
+    </div>
+</div>
+
+<div class="gameContainer">
+    <strong style="text-align: center;">Second image.</strong> <br>
+    <p>
+        Find the differences between the two images. Enter the grid numbers with differences in the input box below.
+    </p>
+    <!-- TODO: put these online -->
+    <div class="two-images">
+        <div class="imageContainer">
+            <img src="{{ static 'pics/Change_detection/Pic1_left.png' }}" alt="Original Image" id="image1">
+        </div>
+
+        <div class="imageContainer">
+            <img src="{{ static 'pics/Change_detection/Pic1_right.png' }}" alt="Modified Image" id="image2">
+        </div>
+    </div>
+
+    <div>
+        <div class="imageContainer">
+            <img src="{{ static 'pics/Change_detection/Pic1_grid.png' }}" alt="Original Image" id="image1">
+        </div>
+    </div>
+
+    <div>
+        <p>
+            Enter the cell numbers with differences in the input box below. You have at most 10 differences to find.
+        </p>
+        <div class='answer-box'>
+            <input type="number" id="differenceInput" class='input_box' placeholder="cell No. # is different"/>
+            <input type="number" id="differenceInput" class='input_box' placeholder="cell No. # is different"/>
+            <input type="number" id="differenceInput" class='input_box' placeholder="cell No. # is different"/>
+            <input type="number" id="differenceInput" class='input_box' placeholder="cell No. # is different"/>
+            <input type="number" id="differenceInput" class='input_box' placeholder="cell No. # is different"/>
+            <input type="number" id="differenceInput" class='input_box' placeholder="cell No. # is different"/>
+            <input type="number" id="differenceInput" class='input_box' placeholder="cell No. # is different"/>
+            <input type="number" id="differenceInput" class='input_box' placeholder="cell No. # is different"/>
+            <input type="number" id="differenceInput" class='input_box' placeholder="cell No. # is different"/>
+            <input type="number" id="differenceInput" class='input_box' placeholder="cell No. # is different"/>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<script src="{{ static 'js/ChangeDetection.js' }}"></script>
+</body>
+
+</html>

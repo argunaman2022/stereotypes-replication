@@ -20,6 +20,8 @@ class C(BaseConstants):
     
     Math_memory_template_path = "_templates/global/Math_memory.html"
     Visual_memory_template_path = "_templates/global/Visual_memory.html"
+    Quiz_template_path = "_templates/global/Quiz.html"
+    ChangeDetection_template_path = "_templates/global/Change_Detection.html"
     
     Round_length = 3660
     Timer_text = "Time left to complete this round:"
@@ -64,6 +66,11 @@ class Player(BasePlayer):
     game2_Competition_Choice = models.BooleanField(choices = [[True, 'Tournament'], [False, 'Piece Rate']],
                                                 label='Which of the following do you choose? [WORDING]',)
 
+    ## Extra fields for certain tasks
+    #TODO: ensure this is called only in math memory and write js code to save the values
+    Math_memory_attempts = models.IntegerField(initial=0) # logs the number of attempts in the math memory game
+    #TODO: ensure this is called only in Quiz and write js code to save the values
+    Quiz_correct_wrong = models.StringField(blank=True) # logs the correct and wrong answers in the quiz
     
     # Whether the player clicked out of the page
     blur_event_counts = models.StringField(initial=0) # logs how often user clicked out of the page #TODO: ensure that this is added to all the pages

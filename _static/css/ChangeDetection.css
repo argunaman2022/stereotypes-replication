@@ -1,0 +1,35 @@
+
+
+.two-images{
+        /* side by side */
+        display: flex;
+}
+
+
+.gameContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-top: 1px solid black;
+    border-bottom: 5px solid black;
+    margin: 15px;
+}
+
+
+.imageContainer {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+}
+
+.answer-box {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.input_box {
+    size: 25;
+}

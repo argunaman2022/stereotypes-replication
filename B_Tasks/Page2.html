@@ -9,10 +9,12 @@
 <script type="text/javascript" src="{{ static 'js/data_quality.js' }}"></script>
 
     <p>
-       Some text if you want. Player is in {{Treatment}}
+       Debug: Player is in treatment: {{Treatment}}.
+       <br>
+       <strong>Please do not refresh your browser. Doing so will not stop the timer but will reset your score.</strong>
     </p>
 
-    {{include C.Visual_memory_template_path}}
+    {{include C.ChangeDetection_template_path}}
 
 
 {% for field in form %}

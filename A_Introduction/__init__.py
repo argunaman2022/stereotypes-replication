@@ -123,6 +123,7 @@ class Player(BasePlayer):
             [False, 'India'] ],
         label='<strong>Choose the country that was described in the instructions.</strong>',
         widget=widgets.RadioSelect)
+    HoneyPot = models.StringField(label='Please fill in some sentences here', blank=True) #honeypot to catch bots
     
     'if the player has decided to quit'
     # participant_quit = models.IntegerField(initial=0) #1 for true #TODO: currently not working. Add functionality: idea if a participant has been idle for a certain amount of time, then they are considered to have quit.
@@ -181,7 +182,7 @@ class Consent(Page):
         treatment_assignment(player) #assign treatment and update quotas 
 
 class Demographics(MyBasePage):
-    extra_fields = ['age', 'gender', 'education', 'income','browser'] 
+    extra_fields = ['age', 'gender', 'education', 'income','browser', 'HoneyPot'] 
     form_fields = MyBasePage.form_fields + extra_fields
 
         
@@ -189,7 +190,7 @@ class Demographics(MyBasePage):
     def vars_for_template(player: Player):
         variables = MyBasePage.vars_for_template(player)
 
-        variables['hidden_fields'].append('browser') 
+        variables['hidden_fields'].extend(['browser', 'HoneyPot']) 
         return variables
     
 class Instructions(MyBasePage):
