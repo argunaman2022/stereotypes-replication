@@ -1,5 +1,5 @@
 {{ block title }}
-    Player choice 1
+    Game 2. Round 2 - Tournament.
 {{ endblock }}
 
 {{ block content }}
@@ -8,9 +8,13 @@
 <script type="text/javascript" src="{{ static 'js/Script_modal.js' }}"></script>
 <script type="text/javascript" src="{{ static 'js/data_quality.js' }}"></script>
 
-    <p>
-       Some text if you want. Player is in {{Treatment}}
-    </p>
+<p>
+    Debug: Player is in treatment: {{Treatment}}.
+    <br>
+    <strong>Please do not refresh your browser. Doing so will not stop the timer but will reset your score.</strong>
+ </p>
+
+ {{include Game_path}}
 
 {% for field in form %}
     {% if field.name not in hidden_fields %}

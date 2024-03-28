@@ -150,7 +150,7 @@ function resetGame(){
   ImgSource = image_source(); // Get the image source for the current box
 
   // Display transition message
-  $("#transitionMessage").text("You completed the first box. Displaying the next box...");
+  $("#transitionMessage").text("You completed this box. Displaying the next box...");
   $("#transitionMessage").show();
 
   setTimeout(function() {

@@ -1,5 +1,5 @@
 {{ block title }}
-    Player choice 1
+    Game 1. Tournament or Piece-rate?
 {{ endblock }}
 
 {{ block content }}
@@ -12,11 +12,40 @@
        Some text if you want. Player is in {{Treatment}}
     </p>
 
-{% for field in form %}
+    <p>
+     You have so far played 2 rounds of the task {{game1_name}} (pic below).
+     This is the final round of this task.
+      <strong>However</strong>, in this round you do not need to solve any more problems but choose whether you want to apply
+      <strong>Piece-rate</strong> or the <strong>Tournament-rate</strong> to your round 1 score.
+       If this round is the <strong>"Bonus-Relevant Round"</strong>, your bonus payment will be determined in the following way: 
+            <ul>
+                <li> If you choose to apply **Tournament-rate** to your round 1 score you will receive either: </li>
+                <ul>
+                    <li>1. **XXX** USD per your correctly solved problems in round 1, if in round 1 you solved more problems than any of the other 5 people in your group in that round.</li>
+                    <li> 2. **0** USD if in round 1 anyone else in your group answered more problems correctly than you in this round.</li>
+                <li> If you choose to apply **Piece-rate** to your round 1 score, you will receive **XXX** USD per problem you solved correctly in round 1. Your payment will not be influenced by the performance of others in your group.
+                </li>
+                </ul>
+                
+            </ul> 
+        In round 1 of this task, you solved  **XXX** many problems. 
+        Would you like to apply the **Piece-rate** or the **Tournament** payment scheme to this round?
+
+
+    </p>
+
+    {% for field in form %}
     {% if field.name not in hidden_fields %}
         {{ formfield field.name }}
     {% endif %}
-{% endfor %}
+    {% endfor %}
+
+    <div>
+        <img src="{{static Game_explanation_pic }}">     
+    </div>
+
+
+
 
 <div style="display:none">
     {% for field in form %}

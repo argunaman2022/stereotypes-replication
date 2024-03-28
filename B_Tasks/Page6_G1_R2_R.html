@@ -1,5 +1,5 @@
 {{ block title }}
-    Player choice 1
+Game 1. Round 2 - Results.
 {{ endblock }}
 
 {{ block content }}
@@ -10,6 +10,9 @@
 
     <p>
        Some text if you want. Player is in {{Treatment}}
+    </p>
+    <p>
+        In previous round your score was {{game1_score}}. Press Next to continue to the next round.
     </p>
 
 {% for field in form %}

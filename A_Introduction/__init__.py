@@ -28,16 +28,13 @@ class C(BaseConstants):
     Quit_study_text_path = "_templates/global/Quit_study_text.html"
     # Treatment quotas. This will be copied to the session variable.
     quotas = {
-    'Math_Game1': 0,
-    'Math_Game2': 0,
-    'Math_Game3': 0,
-    'Math_Game4': 0,
-    'Math_Game5': 0,
-    'Memory_Game1': 0,
-    'Memory_Game2': 0,
-    'Memory_Game3': 0,
-    'Memory_Game4': 0,
-    'Memory_Game5': 0,
+        # TODO: gender balance?
+    'Math_SpotTheDifference': 0,
+    'Math_Quiz': 0,
+    'Math_VisualMemory': 0,
+    'Memory_SpotTheDifference': 0,
+    'Memory_Quiz': 0,
+    'Memory_VisualMemory': 0,
     
     }
     

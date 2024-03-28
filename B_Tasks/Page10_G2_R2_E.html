@@ -1,5 +1,5 @@
 {{ block title }}
-    Player choice 1
+    Game 2. Round 2 - Explanation.
 {{ endblock }}
 
 {{ block content }}
@@ -10,6 +10,17 @@
 
     <p>
        Some text if you want. Player is in {{Treatment}}
+    </p>
+
+
+    <p>
+        {{Game_explanation_text}}. 
+        <br><br>
+        <div>
+            <img src="{{static Game_explanation_pic }}">     
+        </div>
+        <br><br>
+        {{C.Tournament_text}}
     </p>
 
 {% for field in form %}

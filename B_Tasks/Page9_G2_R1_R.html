@@ -1,5 +1,5 @@
 {{ block title }}
-    Player choice 1
+    Game 2. Round 1 Results.
 {{ endblock }}
 
 {{ block content }}
@@ -9,7 +9,10 @@
 <script type="text/javascript" src="{{ static 'js/data_quality.js' }}"></script>
 
     <p>
-       Some text if you want. Player is in {{Treatment}}
+       Some text if you want. Debug: Player is in {{Treatment}}
+    </p>
+    <p>
+        In previous round your score was {{Prev_Score}}. Press Next to continue to the next round.
     </p>
 
 {% for field in form %}

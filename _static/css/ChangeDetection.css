@@ -1,5 +1,4 @@
 
-
 .two-images{
         /* side by side */
         display: flex;
@@ -11,8 +10,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border-top: 1px solid black;
-    border-bottom: 5px solid black;
+    /* border-top: 1px solid black;
+    border-bottom: 5px solid black; */
     margin: 15px;
 }
 

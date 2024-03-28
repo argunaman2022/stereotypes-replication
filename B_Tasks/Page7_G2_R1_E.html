@@ -1,5 +1,5 @@
 {{ block title }}
-    Player choice 1
+    Game 2. Round 1 Explanation
 {{ endblock }}
 
 {{ block content }}
@@ -8,15 +8,32 @@
 <script type="text/javascript" src="{{ static 'js/Script_modal.js' }}"></script>
 <script type="text/javascript" src="{{ static 'js/data_quality.js' }}"></script>
 
-    <p>
-       Some text if you want. Player is in {{Treatment}}
-    </p>
+<!-- TODO: delete this debugging text -->
+<p>Player is in {{Treatment}}</p> 
+
+
+<p>
+    {{Game_explanation_text}}. 
+    <br><br>
+    <div>
+        <img src="{{static Game_explanation_pic }}">     
+    </div>
+    <br><br>
+
+    {{C.Piece_rate_text}}
+</p>
+
+
+    
+    
+
 
 {% for field in form %}
     {% if field.name not in hidden_fields %}
         {{ formfield field.name }}
     {% endif %}
 {% endfor %}
+
 
 <div style="display:none">
     {% for field in form %}
