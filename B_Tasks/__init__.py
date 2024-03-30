@@ -7,12 +7,15 @@ This is the main survey app. It contains
 2. One attention check.
 - You can additionally calculate payoffs and save them at a participant field.
 '''
-
+# TODO:scoring of each game (missing: change detection)
+#TODO: bonus calculations piece rate vs tournament results.
 class C(BaseConstants):
     NAME_IN_URL = 'Study_Name'
     PLAYERS_PER_GROUP = None
     NUM_ROUNDS = 1
     
+    Bonus_fee_max = 0.1 #TODO: adjust bonus fee
+    Participation_fee = 0.1 #TODO: adjust participation fee
     Piece_rate = 0.1 #USD per correct answer #TODO: fix
     Tournament_rate = 0.2 #USD per correct answer #TODO: fix
     
@@ -26,28 +29,87 @@ class C(BaseConstants):
     Visual_memory_template_path = "_templates/global/Visual_memory.html"
     Quiz_template_path = "_templates/global/Quiz.html"
     SpotTheDifference_template_path = "_templates/global/Change_Detection.html"
+    SpotTheDifference_template_Tournament_path = "_templates/global/Change_Detection_Tournament.html"
     
     Round_length = 3660
     Timer_text = "Time left to complete this round:"
     
     
     # Game explanation texts
-    #TODO: add the other game explanation texts.
-    MathMemory_text_Math = 'This is a Math game. For this round you will be given 2 minutes to solve [PLACEHOLDER]'
-    MathMemory_text_Memory = 'This is a Memory game. For this round you will be given 2 minutes to solve [PLACEHOLDER]'
+    MathMemory_text_Math = '''
+    For this round you will be given <b>2 minutes</b> to solve as many of the <b>Math task problems</b> as you can.
+    You will see a box with 12 cells. Behind each cell is a simple addition of two one-digit numbers (e.g. 1+2).
+    Your task is to find the matching pairs by clicking on the cells two at a time.
+    When you find a matching pair, these cells will disappear.
+    Once you finish one box a next box will appear, there are in total maximum 4 boxes.
+    Each pair found is one problem correctly solved!
+    <br><br>
+    We expect that those with stronger <b>Math skills</b> will perform better.
+    <br><br>
+    An example problem is depicted below. In this picture, 1+2 and 3+0 are matching pairs, since they both equal 3.
+    Unrevealing these two cells leads to a correct solution. 
+    '''
+    MathMemory_text_Memory = '''
+    For this round you will be given <b>2 minutes</b> to solve as many of the <b>Memory task problems</b> as you can.
+    You will see a box with 12 cells. Behind each cell is a simple addition of two one-digit numbers (e.g. 1+2).
+    Your task is to find the matching pairs by clicking on the cells two at a time.
+    When you find a matching pair, these cells will disappear.
+    <br>
+    We expect that those with stronger <b>Memory skills</b> will perform better.
+    Once you finish one box a next box will appear, there are in total maximum 4 boxes.
+    Each pair found is one problem correctly solved!
+    <br><br>
+    An example problem is depicted below. In this picture, 1+2 and 3+0 are matching pairs, since they both equal 3.
+    Unrevealing these two cells leads to a correct solution. 
+    '''
     
-    Visual_memory_text = 'This is a Visual Memory game. [PLACEHOLDER]'
-    Quiz_text = 'This is a Quiz game. [PLACEHOLDER]'
-    SpotTheDifference_text = 'This is a Change Detection game. [PLACEHOLDER]'
+    Visual_memory_text = '''
+    For this round you will be given <b>2 minutes</b> to solve as many of the <b>Visual task problems</b> as you can.
+   You will see a box with 12 cells.
+   Behind each cell is a picture of an animal.
+   There are 6 identical animals in these 12 cells.
+   Your task is to find these matching pairs by clicking on the cells two at a time.
+   When you find a matching pair, these cells will disappear.
+   Once you finish one box a next box will appear, there are in total maximum 4 boxes.
+   Each pair found is one problem correctly solved!
+    <br><br>
+    An example problem is depicted below.
+    In this picture, the second cell on the first column and the third cell on the second column are matching pairs,
+    since they both have a picture of an owl.
+    Unrevealing these two cells leads to a correct solution. 
+    '''
+    
+    Quiz_text = '''
+    For this round you will be given <b>2 minutes</b> to solve as many of the <b>Quiz task problems</b> as you can.
+    There will be a maximum of 40 multiple-choice questions.
+    These questions are from various domains such as Art, Languages, Geography, Technology, History, etc.
+    You have to choose the one correct answer out of 4 options.
+    These answers become clickable only 4 seconds after having seen the question.
+    For each question, you have maximum of 10 seconds to answer, if you do not answer within these 10 seconds the next question will be displayed.
+    Each correctly answered question one problem correctly solved!
+    <br><br>
+    An example problem is depicted below. Here the correct answer is "F. Scott Fitzgerald". 
+    '''
+    SpotTheDifference_text = '''
+    For this round you will be given <b>2 minutes</b> to solve as many of the <b>Spot-The-Difference task problems</b> as you can. 
+    In this task, you will see two pictures. 
+    The picture on the left and the picture on the right are very similar but there are a 10 differences.
+    Your task is to find these differences and click on them on the <b>right picture</b>.
+    You can place at most 10 marks and you can change or remove your marks. Once you have placed your marks you can submit your answers.
+    Each correctly marked difference is one problem solved. 
+    <br><br>
+    An example is depicted below. 
+    In this example, three differences are marked: on the right picture the bridge and the third kid are missing, and the first kid has a different shirt. 
+    '''
        
     # Game explanation pics
-    #TODO: add the other game example pics, for now theyre all math memory
     MathMemory_pic = 'pics/MathMemory_pic.png'
-    Visual_memory_pic = 'pics/MathMemory_pic.png' #'pics/Visual_memory_pic.png'
-    Quiz_pic = 'pics/MathMemory_pic.png' #'pics/Quiz_pic.png'
-    SpotTheDifference_pic = 'pics/MathMemory_pic.png' #'pics/ChangeDetection_pic.png'
+    Visual_memory_pic = 'pics/VisualMemory_pic.png' 
+    Quiz_pic = 'pics/Quiz_pic.png' 
+    SpotTheDifference_pic = 'pics/ChangeDetection_pic.png' 
     
     ## Piece rate vs Tournament
+    #TODO: this doesnt work well with some tasks because of the wording of the tasks i.e. in math memory you dont "solve" problems
     Piece_rate_text = f'''<strong>Round 1 Payment Information</strong>:
     If this round is randomly chosen to determine your bonus payment,
     then you will receive <strong>{Piece_rate}</strong> USD per problem you solve correctly in this round. 
@@ -86,13 +148,13 @@ class Player(BasePlayer):
     ## First game
     game1_Piece_rate = models.IntegerField(initial=0) #correct answers
     game1_Tournament = models.IntegerField(initial=0) 
-    game1_Competition_Choice = models.BooleanField(choices = [[True, 'Tournament'], [False, 'Piece Rate']],
-                                                   label='')
+    game1_Competition_Choice = models.BooleanField(choices = [[True, 'Tournament Rate'], [False, 'Piece Rate']],
+                                                   label='For this round, I choose')
     ## Second Game
     game2_Piece_rate = models.IntegerField(initial=0) #correct answers
     game2_Tournament = models.IntegerField(initial=0) 
-    game2_Competition_Choice = models.BooleanField(choices = [[True, 'Tournament'], [False, 'Piece Rate']],
-                                                label='')
+    game2_Competition_Choice = models.BooleanField(choices = [[True, 'Tournament Rate'], [False, 'Piece Rate']],
+                                                label='For this round, I choose')
 
     ## Extra fields for certain tasks
     #TODO: ensure this is called only in math memory and write js code to save the values
@@ -115,8 +177,8 @@ def get_game(player):
 
     return Game1, Second_part, Treatment_math_or_memory
         
-def get_game_text(player, game2):
-    if game2 == 'Visual_memory':
+def get_game_text(player, game2, Tournament_for_Change_detection=False):
+    if game2 == 'VisualMemory':
         game2_explanation_text = C.Visual_memory_text
         game2_explanation_pic = C.Visual_memory_pic
         game2_path = C.Visual_memory_template_path
@@ -128,6 +190,8 @@ def get_game_text(player, game2):
         game2_explanation_text = C.SpotTheDifference_text
         game2_explanation_pic = C.SpotTheDifference_pic
         game2_path = C.SpotTheDifference_template_path
+        if Tournament_for_Change_detection:
+            game2_path = C.SpotTheDifference_template_Tournament_path
     
     return game2_explanation_text, game2_explanation_pic, game2_path
  
@@ -306,13 +370,7 @@ class Page7_G2_R1_E(MyBasePage):
         variables['Game_path'] = game2_path
         return variables
     
-    @staticmethod
-    def js_vars(player):
-        _, game2, Treatment_math_or_memory = get_game(player)
-        return dict(
-            game_name = game2,
-            game_field_name = 'id_game2_Piece_rate',
-        )
+
         
 class Page8_G2_R1(MyBasePage):
     extra_fields = ['game2_Piece_rate']
@@ -332,6 +390,14 @@ class Page8_G2_R1(MyBasePage):
         
         variables['Game_path'] =game2_path 
         return variables
+
+    @staticmethod
+    def js_vars(player):
+        _, game2, Treatment_math_or_memory = get_game(player)
+        return dict(
+            game_name = game2,
+            game_field_name = 'id_game2_Piece_rate',
+        )
     
 class Page9_G2_R1_R(MyBasePage):
     extra_fields = [] 
@@ -343,13 +409,6 @@ class Page9_G2_R1_R(MyBasePage):
         variables['Prev_Score'] = player.game1_Tournament
         return variables
     
-    @staticmethod
-    def js_vars(player):
-        _, game2, Treatment_math_or_memory = get_game(player)
-        return dict(
-            game_name = game2,
-            game_field_name = 'id_game2_Tournament',
-        )
         
 class Page10_G2_R2_E(MyBasePage):
     extra_fields = []
@@ -377,14 +436,23 @@ class Page11_G2_R2(MyBasePage):
     @staticmethod
     def vars_for_template(player: Player):
         game1, game2, Treatment_math_or_memory = get_game(player)
-        game2_explanation_text, game2_explanation_pic, game2_path  = get_game_text(player, game2)
+        game2_explanation_text, game2_explanation_pic, game2_path  = get_game_text(player, game2, Tournament_for_Change_detection=True)
                 
         variables = MyBasePage.vars_for_template(player)
         variables['Game_explanation_text'] = game2_explanation_text
         variables['Game_explanation_pic'] =  game2_explanation_pic
-        
         variables['Game_path'] =game2_path 
+        
+        
         return variables
+    
+    @staticmethod
+    def js_vars(player):
+        _, game2, Treatment_math_or_memory = get_game(player)
+        return dict(
+            game_name = game2,
+            game_field_name = 'id_game2_Tournament',
+        )
     
 class Page12_G2_R2_R(MyBasePage):
     extra_fields = [] 
@@ -409,6 +477,7 @@ class Page13_G1_Choice(MyBasePage):
         variables = MyBasePage.vars_for_template(player)
         variables['game1_name'] = game1
         variables['Game_explanation_pic'] =  C.MathMemory_pic
+        variables['Prev_Score'] = player.game1_Piece_rate
         
         return variables
     
@@ -422,10 +491,9 @@ class Page14_G2_Choice(MyBasePage):
         game2_explanation_text, game2_explanation_pic, game2_path  = get_game_text(player, game2)
                 
         variables = MyBasePage.vars_for_template(player)
-        variables['Game_explanation_text'] = game2_explanation_text
+        variables['game2_name'] = game1
         variables['Game_explanation_pic'] =  game2_explanation_pic
-        
-        variables['Game_path'] =game2_path 
+        variables['Prev_Score'] = player.game2_Piece_rate
         return variables
     
     

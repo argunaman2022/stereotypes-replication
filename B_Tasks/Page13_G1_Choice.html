@@ -8,28 +8,32 @@
 <script type="text/javascript" src="{{ static 'js/Script_modal.js' }}"></script>
 <script type="text/javascript" src="{{ static 'js/data_quality.js' }}"></script>
 
+<div class="card bg-light m-3">
+    <div class="card-body">
+        <p style="font-size: 28px; text-align: center;"><strong>Game 1. Example</strong></p>
+        <img src="{{static Game_explanation_pic }}" style="width: 95%;">     
+    </div>
+</div>
+<strong></strong>
     <p>
-       Some text if you want. Player is in {{Treatment}}
-    </p>
-
-    <p>
-     You have so far played 2 rounds of the task {{game1_name}} (pic below).
+     You have so far played 2 rounds of the task <b>{{game1_name}}</b> task with the example picture above.
      This is the final round of this task.
       <strong>However</strong>, in this round you do not need to solve any more problems but choose whether you want to apply
       <strong>Piece-rate</strong> or the <strong>Tournament-rate</strong> to your round 1 score.
        If this round is the <strong>"Bonus-Relevant Round"</strong>, your bonus payment will be determined in the following way: 
-            <ul>
-                <li> If you choose to apply **Tournament-rate** to your round 1 score you will receive either: </li>
+            <ol>
+                <li> If you choose to apply <strong>Tournament-rate</strong> to your round 1 score you will receive either: </li>
                 <ul>
-                    <li>1. **XXX** USD per your correctly solved problems in round 1, if in round 1 you solved more problems than any of the other 5 people in your group in that round.</li>
-                    <li> 2. **0** USD if in round 1 anyone else in your group answered more problems correctly than you in this round.</li>
-                <li> If you choose to apply **Piece-rate** to your round 1 score, you will receive **XXX** USD per problem you solved correctly in round 1. Your payment will not be influenced by the performance of others in your group.
-                </li>
+                    <li><strong>{{C.Tournament_rate}}</strong>$ per your correctly solved problems in round 1, if in round 1 you solved more problems than any of the other 5 people in your group in that round.</li>
+                    <li><strong>0</strong>$ if in round 1 anyone else in your group answered more problems correctly than you in this round.</li>
                 </ul>
+                <li> If you choose to apply <strong>Piece-rate</strong> to your round 1 score, 
+                    you will receive <strong>{{C.Piece_rate}}</strong>$ per problem you solved correctly in round 1.
+                     Your payment will not be influenced by the performance of others in your group.</li>
                 
-            </ul> 
-        In round 1 of this task, you solved  **XXX** many problems. 
-        Would you like to apply the **Piece-rate** or the **Tournament** payment scheme to this round?
+                </ol> 
+        In round 1 of this task, <b>you solved {{Prev_Score}}</b> many problems. 
+        Would you like to apply the <b>Piece-rate</b> or the <b>Tournament rate</b> payment scheme to this round?
 
 
     </p>
@@ -40,9 +44,7 @@
     {% endif %}
     {% endfor %}
 
-    <div>
-        <img src="{{static Game_explanation_pic }}">     
-    </div>
+
 
 
 
@@ -57,7 +59,7 @@
     <br><br>
 
     <div class="buttons-container">
-        <a id="myBtn" onclick="open_modal(2)"  class="otree-btn-next btn btn-primary">Exit Survey (Return task)</a>
+        <a id="myBtn" onclick="open_modal(2)"  class="otree-btn-next btn btn-primary">Quit Study (Return Task)</a>
         <a id="myBtn" onclick="open_modal(1)"  class="otree-btn-next btn btn-primary">Instructions</a>
         <button id="NextButton" class="otree-btn-next btn btn-primary">Next</button>
     </div>

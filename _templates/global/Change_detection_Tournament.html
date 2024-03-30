@@ -7,6 +7,8 @@
     <title>Quiz Game</title>
     
     <link rel="stylesheet" href="{{static 'css/SpotTheDifference.css'}}">
+    <script src="{{ static 'js/SpotTheDifference.js' }}"></script>
+
 </head>
 
 <body>
@@ -16,10 +18,10 @@
     <div id="gameArea">
         <div class="imageContainer">
             <!-- TODO: put these online -->
-            <img id="image1" src="{{ static 'pics/Change_detection/Pic1_left.png'}} " alt="Image 1" width="400px">
+            <img id="image1" src="{{ static 'pics/Change_detection/Pic2_left.png'}} " alt="Image 1" width="400px">
         </div>
         <div class="imageContainer">
-            <img id="image2" src="{{ static 'pics/Change_detection/Pic1_right.png'}} "  alt="Image 2" width="400px">
+            <img id="image2" src="{{ static 'pics/Change_detection/Pic2_right.png'}} "  alt="Image 2" width="400px">
             <canvas id="overlayCanvas"></canvas>
         </div>
     </div>
@@ -31,6 +33,5 @@
     
     
 </body>
-<script src="{{ static 'js/SpotTheDifference.js' }}"></script>
 
 </html>

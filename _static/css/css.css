@@ -22,5 +22,19 @@
 body {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 20px;
+}
 
+
+.task-example{
+          /* side by side */
+          display: flex;
+}
+
+.otree-timer{
+    position: -webkit-sticky; /* For Safari */
+    position: sticky;
+    top: 0; /* Adjust this value to control the distance from the top of the viewport */
+    z-index: 1000; /* Ensure the timer appears above other content */
+    padding: 10px; /* Optional: padding around the timer */
+    border-bottom: 1px solid #ccc; /* Optional: a border to separate the timer from content below */
 }

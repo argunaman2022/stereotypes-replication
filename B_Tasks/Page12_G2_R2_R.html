@@ -9,10 +9,7 @@ Game 2. Round 2 - Results.
 <script type="text/javascript" src="{{ static 'js/data_quality.js' }}"></script>
 
     <p>
-       Some text if you want. Player is in {{Treatment}}
-    </p>
-    <p>
-        In previous round your score was {{prev_score}}. Press Next to continue to the next round.
+        In previous round your score was {{prev_score}}. 
     </p>
 
 {% for field in form %}
@@ -31,9 +28,9 @@ Game 2. Round 2 - Results.
     <br><br>
 
     <div class="buttons-container">
-        <a id="myBtn" onclick="open_modal(2)"  class="otree-btn-next btn btn-primary">Exit Survey (Return task)</a>
+        <a id="myBtn" onclick="open_modal(2)"  class="otree-btn-next btn btn-primary">Quit Study (Return Task)</a>
         <a id="myBtn" onclick="open_modal(1)"  class="otree-btn-next btn btn-primary">Instructions</a>
-        <button id="NextButton" class="otree-btn-next btn btn-primary">Next</button>
+        <button id="NextButton" class="otree-btn-next btn btn-primary">Continue to the next round</button>
     </div>
     
     

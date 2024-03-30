@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const questions = [
+    const questions1 = [
         {"q": "What is the definition and the danger of recoil?", "choices": ["To recoil is to respond in fear, and it is dangerous because engineers and workers need to remain in control. Losing control could result in serious injuries on the job.", "Recoil is the concept of \u201ckicking back\u201d or leaping back after being released. It may be dangerous due to the possibility of injury upon having equipment \u201cleap back\u201d rapidly.", "To recoil is to move quickly and efficiently, and it is not dangerous but desired.", "To recoil is to feel revolted or disgusted, and it is dangerous because it creates job dissatisfaction."], "answer": "Recoil is the concept of \u201ckicking back\u201d or leaping back after being released. It may be dangerous due to the possibility of injury upon having equipment \u201cleap back\u201d rapidly."},
         {"q": "The Great Gatsby was written by which author?", "choices": ["Ernest Hemingway", "F. Scott Fitzgerald", "Mark Twain", "Harper Lee"], "answer": "F. Scott Fitzgerald"},
         {"q": "What process do plants use to convert sunlight into food?", "choices": ["Photosynthesis", "Respiration", "Transpiration", "Fermentation"], "answer": "Photosynthesis"},
@@ -91,10 +91,10 @@ document.addEventListener('DOMContentLoaded', function() {
     let interval;
 
     if (game_field_name =='id_game1_Piece_rate'){
-        questions = questions;
+        var questions = questions;
     }
     else if (game_field_name =='id_game2_Tournament'){
-        questions = question2;
+        var questions = question2;
     }
 
     function setChoiceButtonsDisabled(state) {

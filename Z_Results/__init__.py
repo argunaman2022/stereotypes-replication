@@ -1,5 +1,5 @@
 from otree.api import *
-
+#TODO: calculate payoffs and stuff
 
 doc = """
 Your app description

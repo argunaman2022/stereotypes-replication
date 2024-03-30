@@ -19,6 +19,8 @@ class C(BaseConstants):
     PLAYERS_PER_GROUP = None
     NUM_ROUNDS = 1
     
+    Participation_fee = 0.1 #TODO: adjust participation fee
+    Bonus_fee_max = 0.1 #TODO: adjust bonus fee
     # Prolific links:
     Completion_redirect = "https://www.wikipedia.org/" #TODO: adjust completion redirect
     Reject_redirect = "https://www.wikipedia.org/" #TODO: adjust reject redirect
@@ -166,7 +168,8 @@ class MyBasePage(Page):
     @staticmethod
     def vars_for_template(player: Player):
         return {'hidden_fields': ['blur_event_counts'], #fields to be hidden from the participant e.g. browser, blur_event_counts, see the page to see how this works. #user_clicked_out
-                'Instructions': C.Instructions_path} 
+                'Instructions': C.Instructions_path,
+                'Treatment': player.participant.Treatment,}  
 
 #%% Pages
 
