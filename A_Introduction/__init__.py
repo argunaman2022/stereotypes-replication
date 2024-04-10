@@ -96,22 +96,23 @@ class Player(BasePlayer):
     Comprehension_2 = models.BooleanField(initial=True) 
     
     Comprehension_question_1 = models.BooleanField(choices=[
-            [True,'Correct answer'], # Correct answer here
-            [False, 'False answer'],
-            [False, 'False answer'],],
-        label = 'Comprehension question 1',
+            [True,'I will play 2 different tasks. Each task has 3 rounds.'], # Correct answer here
+            [False, 'I will play 3 different tasks. Each task has 3 rounds.'],
+            [False, 'I will play 2 different tasks. Each task has 2 rounds.'],],
+        label = 'Which of the following is correct?',
         widget=widgets.RadioSelect)
+    
     Comprehension_question_2 = models.BooleanField(choices=[
-            [True,'Correct answer'], 
-            [False, 'False answer'],
-            [False, 'False answer'],],
-        label = 'Comprehension question 1',
+            [True,'There is no bonus payment. I will only earn a completion payment upon finishing the study.'], # Correct answer here
+            [False, 'There is no completion payment. I will only earn a bonus payment which depends on my performance.'],
+            [True, 'I will earn a completion payment upon finishing as well as a bonus payment which depends on my performance.'],],
+        label = 'Which of the following is correct?',
         widget=widgets.RadioSelect)
     Comprehension_question_3 = models.BooleanField(choices=[
-            [True,'Correct answer'], 
-            [False, 'False answer'],
-            [False, 'False answer'],],
-        label = 'Comprehension question 1',
+            [True,'One of the 6 rounds will be randomly chosen as the Bonus-Relevant Round. My performance in this round will determine my bonus payment.'], # Correct answer here
+            [False, 'The first round of each game is the Bonus-Relevant Round. My performance in these rounds will determine my bonus payment.'],
+            [False, 'Three of the 6 rounds will be randomly chosen as the Bonus-Relevant Rounds. My performance in these rounds will determine my bonus payment.'],],
+        label = 'What is the <strong>Bonus-Relevant Round</strong>?',
         widget=widgets.RadioSelect)
     
     Attention_1 = models.BooleanField(choices=[

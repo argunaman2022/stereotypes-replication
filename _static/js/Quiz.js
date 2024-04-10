@@ -89,9 +89,9 @@ document.addEventListener('DOMContentLoaded', function() {
     let currentQuestion = 0;
     let timer = 10;
     let interval;
-
+    var questions = questions1
     if (game_field_name =='id_game1_Piece_rate'){
-        var questions = questions;
+        var questions = questions1;
     }
     else if (game_field_name =='id_game2_Tournament'){
         var questions = question2;
