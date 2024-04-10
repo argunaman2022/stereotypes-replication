@@ -30,7 +30,7 @@ class C(BaseConstants):
     Quit_study_text_path = "_templates/global/Quit_study_text.html"
     # Treatment quotas. This will be copied to the session variable.
     quotas = {
-        # TODO: gender balance?
+        # TODO: gender balance? Yes.
     'Math_SpotTheDifference': 0,
     'Math_Quiz': 0,
     'Math_VisualMemory': 0,
@@ -70,7 +70,7 @@ class Player(BasePlayer):
     gender = models.StringField(label='Gender at birth',
                                 choices=['Male', 'Female', 'Other/Prefer not to say'], widget=widgets.RadioSelect)
     education = models.StringField(label = 'Education level',
-                                   choices=['Haven’t graduated high school','GED','High school graduate','Bachelors','Masters','Professional degree (JD, MD, MBA)','Doctorate'], widget=widgets.RadioSelect) 
+                                   choices=['Did not graduate from high school','GED','High school graduate','Bachelors','Masters','Professional degree (JD, MD, MBA)','Doctorate'], widget=widgets.RadioSelect) 
     # education = models.StringField(label = 'Education level',
     #                                choices=['High school or lower','Bachelors degree','Masters degree','PhD','Other'], widget=widgets.RadioSelect) 
     
@@ -120,7 +120,7 @@ class Player(BasePlayer):
             [False, 'Switzerland'],
             [True, 'Russia'], 
             [False, 'India'] ],
-        label='<strong>Choose the country that was described in the instructions.</strong>',
+        label='<strong>Choose the country that was mentioned in the instructions.</strong>',
         widget=widgets.RadioSelect)
     HoneyPot = models.StringField(label='Please fill in some sentences here', blank=True) #honeypot to catch bots
     

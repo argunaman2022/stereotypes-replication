@@ -37,66 +37,66 @@ class C(BaseConstants):
     
     # Game explanation texts
     MathMemory_text_Math = '''
-    For this round you will be given <b>2 minutes</b> to solve as many of the <b>Math task problems</b> as you can.
+    For this round you will be given <b>2 minutes</b> to solve as many <b>Math task problems</b> as you can.
     You will see a box with 12 cells. Behind each cell is a simple addition of two one-digit numbers (e.g. 1+2).
-    Your task is to find the matching pairs by clicking on the cells two at a time.
+    Your task is to find the matching pairs by clicking on the corresponding cells.
     When you find a matching pair, these cells will disappear.
-    Once you finish one box a next box will appear, there are in total maximum 4 boxes.
-    Each pair found is one problem correctly solved!
+    Once you finish one box, a next box will appear. In total, there are at maximum 4 boxes.
+    Each pair found counts as one problem correctly solved!
     <br><br>
-    We expect that those with stronger <b>Math skills</b> will perform better.
+    We expect that those with stronger <b>math skills</b> will perform better.
     <br><br>
     An example problem is depicted below. In this picture, 1+2 and 3+0 are matching pairs, since they both equal 3.
-    Unrevealing these two cells leads to a correct solution. 
+    Clicking on these two cells leads to a correct solution 
     '''
     MathMemory_text_Memory = '''
-    For this round you will be given <b>2 minutes</b> to solve as many of the <b>Memory task problems</b> as you can.
+    For this round you will be given <b>2 minutes</b> to solve as many <b>Memory task problems</b> as you can.
     You will see a box with 12 cells. Behind each cell is a simple addition of two one-digit numbers (e.g. 1+2).
-    Your task is to find the matching pairs by clicking on the cells two at a time.
+    Your task is to find the matching pairs by clicking on the corresponding cells.
     When you find a matching pair, these cells will disappear.
     <br>
-    We expect that those with stronger <b>Memory skills</b> will perform better.
-    Once you finish one box a next box will appear, there are in total maximum 4 boxes.
-    Each pair found is one problem correctly solved!
+    We expect that those with stronger <b>memory skills</b> will perform better.
+    Once you finish one box, a next box will appear. In total, there are at maximum 4 boxes.
+    Each pair found counts as one problem correctly solved!
     <br><br>
     An example problem is depicted below. In this picture, 1+2 and 3+0 are matching pairs, since they both equal 3.
-    Unrevealing these two cells leads to a correct solution. 
+    Clicking on these two cells leads to a correct solution 
     '''
     
     Visual_memory_text = '''
-    For this round you will be given <b>2 minutes</b> to solve as many of the <b>Visual task problems</b> as you can.
+    For this round you will be given <b>2 minutes</b> to solve as many <b>Visual task problems</b> as you can.
    You will see a box with 12 cells.
    Behind each cell is a picture of an animal.
    There are 6 identical animals in these 12 cells.
-   Your task is to find these matching pairs by clicking on the cells two at a time.
+   Your task is to find these matching pairs by clicking on the corresponding cells.
    When you find a matching pair, these cells will disappear.
-   Once you finish one box a next box will appear, there are in total maximum 4 boxes.
-   Each pair found is one problem correctly solved!
+   Once you finish one box, a next box will appear. In total, there are at maximum 4 boxes.
+    Each pair found counts as one problem correctly solved!
     <br><br>
     An example problem is depicted below.
-    In this picture, the second cell on the first column and the third cell on the second column are matching pairs,
+    In this picture, the second cell on the first column and the third cell on the second column fprm a matching pair,
     since they both have a picture of an owl.
-    Unrevealing these two cells leads to a correct solution. 
+    Clicking on these two cells leads to a correct solution 
     '''
     
     Quiz_text = '''
-    For this round you will be given <b>2 minutes</b> to solve as many of the <b>Quiz task problems</b> as you can.
+    For this round you will be given <b>2 minutes</b> to solve as many <b>Quiz task problems</b> as you can.
     There will be a maximum of 40 multiple-choice questions.
     These questions are from various domains such as Art, Languages, Geography, Technology, History, etc.
     You have to choose the one correct answer out of 4 options.
-    These answers become clickable only 4 seconds after having seen the question.
-    For each question, you have maximum of 10 seconds to answer, if you do not answer within these 10 seconds the next question will be displayed.
-    Each correctly answered question one problem correctly solved!
+    These answers become clickable only after 4 seconds of having seen the question.
+    For each question, you have a maximum of 10 seconds to answer. If you do not answer within these 10 seconds, the next question will be displayed.
+    Each correctly answered question counts as one problem correctly solved!
     <br><br>
-    An example problem is depicted below. Here the correct answer is "F. Scott Fitzgerald". 
+    An example problem is depicted below. Here, the correct answer is "F. Scott Fitzgerald"
     '''
     SpotTheDifference_text = '''
-    For this round you will be given <b>2 minutes</b> to solve as many of the <b>Spot-The-Difference task problems</b> as you can. 
+    For this round you will be given <b>2 minutes</b> to solve as many <b>Spot-The-Difference task problems</b> as you can. 
     In this task, you will see two pictures. 
     The picture on the left and the picture on the right are very similar but there are a 10 differences.
     Your task is to find these differences and click on them on the <b>right picture</b>.
-    You can place at most 10 marks and you can change or remove your marks. Once you have placed your marks you can submit your answers.
-    Each correctly marked difference is one problem solved. 
+    You can place at most 10 marks and you can change or remove them at any time. Once you have placed all your marks, you can submit your answers.
+    Each correctly marked difference counts as one problem solved. 
     <br><br>
     An example is depicted below. 
     In this example, three differences are marked: on the right picture the bridge and the third kid are missing, and the first kid has a different shirt. 
@@ -109,14 +109,14 @@ class C(BaseConstants):
     SpotTheDifference_pic = 'pics/ChangeDetection_pic.png' 
     
     ## Piece rate vs Tournament
-    #TODO: this doesnt work well with some tasks because of the wording of the tasks i.e. in math memory you dont "solve" problems
-    Piece_rate_text = f'''<strong>Round 1 Payment Information</strong>:
+    #TODO: this doesn't work well with some tasks because of the wording of the tasks i.e. in math memory you don't "solve" problems
+    Piece_rate_text = f'''<strong>Round 1. Payment information</strong>:
     If this round is randomly chosen to determine your bonus payment,
     then you will receive <strong>{Piece_rate}</strong> USD per problem you solve correctly in this round. 
     Your payment is not influenced by the performance of others in your group.
     Wrong answers do not decrease your payment. We call this payment scheme the <strong>"Piece-rate"</strong> payment, please remember this.'''
     
-    Tournament_text = f'''<strong>Round 2 Payment Information</strong>: If this round is chosen to determine your bonus payment,
+    Tournament_text = f'''<strong>Round 2. Payment information</strong>: If this round is chosen to determine your bonus payment,
         then you will receive either:
         <ul>
             <li> <strong>{Tournament_rate}</strong> USD per correctly solved problem in this round,
