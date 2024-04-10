@@ -14,10 +14,12 @@
 
  {{include Game_path}}
 
-{% for field in form %}
-    {% if field.name not in hidden_fields %}
-        {{ formfield field.name }}
-    {% endif %}
+ {% for field in form %}
+ {% if field.name not in hidden_fields %}
+ <div style="display: none;">
+ {{ formfield field.name }}
+ </div>    
+ {% endif %}
 {% endfor %}
 
 <div style="display:none">

@@ -31,7 +31,7 @@ class C(BaseConstants):
     SpotTheDifference_template_path = "_templates/global/Change_Detection.html"
     SpotTheDifference_template_Tournament_path = "_templates/global/Change_Detection_Tournament.html"
     
-    Round_length = 3660
+    Round_length = 120 #TODO: change this to 120
     Timer_text = "Time left to complete this round:"
     
     
