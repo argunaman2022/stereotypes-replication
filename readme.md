@@ -27,7 +27,7 @@ This study has 3 apps
     Failed screening
     Results
 
-there are 6 tasks. 2 of these are math-memory tasks framed either as memory or as math tasks.
-Each participant plays either of these 2 frames and one random task from the remaining 4
-At the start of the game a participant is assigned one of the two and one of the 4 randomly. Then the order of these two tasks are randomized and that becomes his treatment.
-Then depending on the treatment (e.g. 'Math-memory-memory','SomeTask' or 'SomeTask','Math-memory-math') the participant goes through the task app pages.
+There are 6 tasks. 2 of these are math-memory tasks framed either as memory or as math tasks.
+Each participant plays either of these 2 frames and one random task from the remaining 4.
+At the start of the game, each participant is assigned one of the two math-memory frames and one of the other 4 tasks randomly. Then, the order of these two tasks is randomized which becomes his treatment.
+Depending on the treatment (e.g. 'Math-memory-memory','SomeTask' or 'SomeTask','Math-memory-math'), the participant goes through the task app pages.
