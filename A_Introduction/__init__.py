@@ -109,10 +109,10 @@ class Player(BasePlayer):
         label = 'Which of the following is correct?',
         widget=widgets.RadioSelect)
     Comprehension_question_3 = models.BooleanField(choices=[
-            [True,'One of the 6 rounds will be randomly chosen as the Bonus-Relevant Round. My performance in this round will determine my bonus payment.'], # Correct answer here
-            [False, 'The first round of each game is the Bonus-Relevant Round. My performance in these rounds will determine my bonus payment.'],
-            [False, 'Three of the 6 rounds will be randomly chosen as the Bonus-Relevant Rounds. My performance in these rounds will determine my bonus payment.'],],
-        label = 'What is the <strong>Bonus-Relevant Round</strong>?',
+            [True,'One of the 6 rounds will be randomly chosen as the bonus-relevant round. My performance in this round will determine my bonus payment.'], # Correct answer here
+            [False, 'The first round of each game is the bonus-relevant round. My performance in these rounds will determine my bonus payment.'],
+            [False, 'Three of the 6 rounds will be randomly chosen as the bonus-relevant round. My performance in these rounds will determine my bonus payment.'],],
+        label = 'What is the <strong>bonus-relevant round</strong>?',
         widget=widgets.RadioSelect)
     
     Attention_1 = models.BooleanField(choices=[
