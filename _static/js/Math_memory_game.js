@@ -8,6 +8,22 @@ var Max_boxes = 4 // Number of boxes to solve to complete the game
 let game_field_name = js_vars.game_field_name;
 console.log('math memory loaded')
 
+// create a locally stored variable Attempts and set it to 0
+localStorage.setItem('Attempts', '0');
+
+// Function to increment the counter
+function incrementAttempts() {
+  // Retrieve the current value of the counter from localStorage
+  let Attempts = parseInt(localStorage.getItem('Attempts'), 0);
+  Attempts++;
+  localStorage.setItem('Attempts', Attempts.toString());
+
+  if (game_field_name == 'id_game1_Piece_rate'){
+    document.getElementById('id_Game1_attempts_R1').value=Attempts;}
+  else if (game_field_name == 'id_game1_Tournament'){
+    document.getElementById('id_Game1_attempts_R2').value=Attempts;}
+}
+
 
 var Source = "#boxcard"; // Selector for the card container element
 var ImgSource1 = [
@@ -184,7 +200,11 @@ function OpenCard() {
       setTimeout(function() {
         $(Source + " div").bind("click", OpenCard) // Re-enable clicks after delay
       }, 300);
-    } else { // Second card of a turn
+    } else { 
+      // Second card of a turn
+      // Increment false attempts
+      incrementAttempts();
+      // Second card opened
       CurrentOpened = $("#" + id + " img").attr("src");
 
       if(isImageMatch(ImgOpened, CurrentOpened))

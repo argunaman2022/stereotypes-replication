@@ -143,7 +143,6 @@ class Player(BasePlayer):
             [False, 'I agree.'],], 
         label= 'A 20 year old man can eat 500kg meat and 2 tons of vegetables in one meal.', widget=widgets.RadioSelect)
             
-    #TODO: save treatment to player variable
     # Scores and trials from each game. There are 6 games but each player plays only 2. See treatment for the order.
     ## First game
     game1_Piece_rate = models.IntegerField(initial=0) #correct answers
@@ -158,12 +157,14 @@ class Player(BasePlayer):
 
     ## Extra fields for certain tasks
     #TODO: ensure this is called only in math memory and write js code to save the values
-    Math_memory_attempts = models.IntegerField(initial=0) # logs the number of attempts in the math memory game
-    #TODO: ensure this is called only in Quiz and write js code to save the values
-    Quiz_correct_wrong = models.StringField(blank=True) # logs the correct and wrong answers in the quiz
+    Game1_attempts_R1 = models.IntegerField(initial=0) # logs the number of attempts in the math memory game
+    Game1_attempts_R2 = models.IntegerField(initial=0) # logs the number of attempts in the math memory game
+    #The Game2 attempts are only relevant in the visual memory game
+    Game2_attempts_R1 = models.IntegerField(initial=0) # logs the number of attempts in the math memory game
+    Game2_attempts_R2 = models.IntegerField(initial=0) # logs the number of attempts in the math memory game
     
     # Whether the player clicked out of the page
-    blur_event_counts = models.StringField(initial=0) # logs how often user clicked out of the page #TODO: ensure that this is added to all the pages
+    blur_event_counts = models.StringField(initial=0) # logs how often user clicked out of the page 
 
  
 #%% Functions
@@ -243,7 +244,7 @@ class Page1_G1_R1_E(MyBasePage):
         return variables
     
 class Page2_G1_R1(MyBasePage):
-    extra_fields = ['game1_Piece_rate'] 
+    extra_fields = ['game1_Piece_rate','Game1_attempts_R1'] 
     form_fields = MyBasePage.form_fields + extra_fields
     
     timeout_seconds = C.Round_length
@@ -309,7 +310,7 @@ class Page4_G1_R2_E(MyBasePage):
         return variables
 
 class Page5_G1_R2(MyBasePage):
-    extra_fields = ['game1_Tournament']
+    extra_fields = ['game1_Tournament', 'Game1_attempts_R2']
     form_fields = MyBasePage.form_fields + extra_fields
     
     timeout_seconds = C.Round_length
@@ -373,7 +374,7 @@ class Page7_G2_R1_E(MyBasePage):
 
         
 class Page8_G2_R1(MyBasePage):
-    extra_fields = ['game2_Piece_rate']
+    extra_fields = ['game2_Piece_rate', 'Game2_attempts_R1']
     form_fields = MyBasePage.form_fields + extra_fields
     
     timeout_seconds = C.Round_length
@@ -427,7 +428,7 @@ class Page10_G2_R2_E(MyBasePage):
         return variables
     
 class Page11_G2_R2(MyBasePage):
-    extra_fields = ['game2_Tournament'] 
+    extra_fields = ['game2_Tournament', 'Game2_attempts_R2'] 
     form_fields = MyBasePage.form_fields + extra_fields
     
     timeout_seconds = C.Round_length

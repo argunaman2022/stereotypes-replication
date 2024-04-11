@@ -4,12 +4,28 @@ var ImgOpened = ""; // Image source of the first opened card
 var Counter = 0;    // Number of player moves
 var ImgFound = 0;   // Number of matching pairs found
 var BoxesSolved = 0; // Number of boxes solved
-var Max_boxes = 4 // Number of boxes to solve to complete the game TODO: change to 4 or make it dynamic
+var Max_boxes = 4 // Number of boxes to solve to complete the game 
 let game_field_name = js_vars.game_field_name;
 console.log('visual memory loaded')
 
+// create a locally stored variable Attempts and set it to 0
+localStorage.setItem('Attempts', '0');
+
+// Function to increment the counter
+function incrementAttempts() {
+  // Retrieve the current value of the counter from localStorage
+  let Attempts = parseInt(localStorage.getItem('Attempts'), 0);
+  Attempts++;
+  localStorage.setItem('Attempts', Attempts.toString());
+
+  if (game_field_name == 'id_game2_Piece_rate'){
+    document.getElementById('id_Game2_attempts_R1').value=Attempts;}
+  else if (game_field_name == 'id_game2_Tournament'){
+    document.getElementById('id_Game2_attempts_R2').value=Attempts;}
+}
+
+
 var Source = "#boxcard"; // Selector for the card container element
-// TODO: proper shuffling.
 var ImgSource1 = [
   
   "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Visual_memory_boxes/1.jpg",
@@ -151,7 +167,11 @@ function OpenCard() {
       setTimeout(function() {
         $(Source + " div").bind("click", OpenCard) // Re-enable clicks after delay
       }, 300);
-    } else { // Second card of a turn
+    } else {
+      // Second card of a turn
+      // Increment the Attempts
+      incrementAttempts();
+
       CurrentOpened = $("#" + id + " img").attr("src");
 
       if (ImgOpened != CurrentOpened) { // Cards don't match

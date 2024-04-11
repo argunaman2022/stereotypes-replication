@@ -86,7 +86,7 @@ class Player(BasePlayer):
     # Data quality. 
     #browser used by the participant This variable is saved in the demographics page.
     browser = models.StringField(blank=True) 
-    # logs how often user clicked out of the page #TODO: ensure that this is added to all the pages
+    # logs how often user clicked out of the page 
     blur_event_counts = models.StringField(initial=0) 
     
     'Comprehension and attention checks'
@@ -179,7 +179,6 @@ class MyBasePage(Page):
 #%% Pages
 
 #Consent, Demographics, Introduction, Comprehension checks and attention check 1
-#TODO: add quit study button to all pages
 class Consent(Page):   
     @staticmethod
     def before_next_page(player: Player, timeout_happened=False):

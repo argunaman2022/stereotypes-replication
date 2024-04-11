@@ -19,12 +19,10 @@ ROOMS = [
 SESSION_CONFIG_DEFAULTS = dict(
     real_world_currency_per_point=1.00, participation_fee=0.00, doc=""
 )
-#TODO: add the relevant participant fields if you wanna pass them thourgh apps
 PARTICIPANT_FIELDS = [
     'Allowed','Comprehension_passed', 'Attention_passed',
     'Treatment'
 ]
-#TODO: add the treatments here
 SESSION_FIELDS = {
                     'Treatment_quotas':{} 
                  }
