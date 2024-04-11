@@ -103,10 +103,10 @@ class C(BaseConstants):
     '''
        
     # Game explanation pics
-    MathMemory_pic = 'pics/MathMemory_pic.png'
-    Visual_memory_pic = 'pics/VisualMemory_pic.png' 
-    Quiz_pic = 'pics/Quiz_pic.png' 
-    SpotTheDifference_pic = 'pics/ChangeDetection_pic.png' 
+    MathMemory_pic = 'https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/MathMemory_pic.png'
+    Visual_memory_pic = 'https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/VisualMemory_pic.png' 
+    Quiz_pic = 'https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Quiz_pic.png' 
+    SpotTheDifference_pic = 'https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/ChangeDetection_pic.png'
     
     ## Piece rate vs Tournament
     #TODO: this doesn't work well with some tasks because of the wording of the tasks i.e. in math memory you don't "solve" problems
