@@ -1,7 +1,8 @@
 from os import environ
 
 SESSION_CONFIGS = [
-    dict(name='Study', app_sequence=['A_Introduction','B_Tasks', 'Z_Results'], num_demo_participants=200,
+    #TODO: remove pilot1 from the app_sequence
+    dict(name='Study', app_sequence=['A_Introduction','B_Tasks',  'Pilot', 'Z_Results'], num_demo_participants=200,
          completionlink='prolific completion link!!!!!!'), #TODO: add the proper completion link from prolific
 
 ]
