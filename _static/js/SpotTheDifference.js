@@ -31,16 +31,16 @@ document.addEventListener('DOMContentLoaded', () => {
     ];
 
     const actual_differences_farm = [
-        { x: 112, y: 39 }, // Example coordinates, replace with your actual values
-        { x: 84, y: 101 }  ,
-        { x: 129, y: 147 }  ,
-        { x: 47, y: 227 }  ,
-        { x: 206, y: 183 }  ,
-        { x: 295, y: 196 }  ,
-        { x: 378, y: 209 }  ,
-        { x: 363, y: 99 }  ,
-        { x: 289, y: 78 }  ,
-        { x: 217, y: 91 }  ,
+        { x: 30, y: 60 }, // Example coordinates, replace with your actual values
+        { x: 82, y: 96 }  ,
+        { x: 41, y: 179 }  ,
+        { x: 144, y: 150 }  ,
+        { x: 207, y: 180 }  ,
+        { x: 288, y: 113 }  ,
+        { x: 332, y: 127 }  ,
+        { x: 228, y: 82 }  ,
+        { x: 151, y: 40 }  ,
+        { x: 340, y: 58 }  ,
     ];
 
     if (game_field_name == 'id_game2_Piece_rate') {

@@ -31,6 +31,7 @@ class C(BaseConstants):
     # Treatment quotas. This will be copied to the session variable.
     quotas = {
         # TODO: gender balance? Yes.
+        #TODO: add gender balancing
     'Math_SpotTheDifference': 0,
     'Math_Quiz': 0,
     'Math_VisualMemory': 0,
