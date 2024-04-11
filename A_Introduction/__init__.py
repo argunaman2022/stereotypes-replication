@@ -65,6 +65,7 @@ class Group(BaseGroup):
 
 class Player(BasePlayer):
     # Demographics
+    treatment = models.StringField() #treatment assignment
     prolific_id = models.StringField(default=str("None")) #prolific id, will be fetched automatically.
     age = models.IntegerField(label="Age", min=18, max=100)
     gender = models.StringField(label='Gender at birth',
@@ -141,8 +142,11 @@ def treatment_assignment(player):
     3. update quotas accordingly.
     '''
     treatment = random.choice([key for key, value in Quotas.items() if value in sorted(Quotas.values())[:1]])
+    print('Treatment:', treatment)
     player.participant.Treatment = treatment
+    player.treatment = treatment
     Quotas.update({treatment: Quotas[treatment]+1})
+    
 
 def reduce_quota(player):
     #TODO: make sure whenever a participant leaves reduce quota is applied by calling this function in places where participants might leave
