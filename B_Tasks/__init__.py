@@ -31,7 +31,7 @@ class C(BaseConstants):
     SpotTheDifference_template_path = "_templates/global/Change_Detection.html"
     SpotTheDifference_template_Tournament_path = "_templates/global/Change_Detection_Tournament.html"
     
-    Round_length = 120 #TODO: change this to 120
+    Round_length = 3600 #TODO: change this to 120
     Timer_text = "Time left to complete this round:"
     
     
@@ -143,7 +143,7 @@ class Player(BasePlayer):
             [False, 'I agree.'],], 
         label= 'A 20 year old man can eat 500kg meat and 2 tons of vegetables in one meal.', widget=widgets.RadioSelect)
             
-            
+    #TODO: save treatment to player variable
     # Scores and trials from each game. There are 6 games but each player plays only 2. See treatment for the order.
     ## First game
     game1_Piece_rate = models.IntegerField(initial=0) #correct answers
@@ -406,7 +406,7 @@ class Page9_G2_R1_R(MyBasePage):
     @staticmethod
     def vars_for_template(player: Player):
         variables = MyBasePage.vars_for_template(player)
-        variables['Prev_Score'] = player.game1_Tournament
+        variables['Prev_Score'] = player.game2_Piece_rate
         return variables
     
         
