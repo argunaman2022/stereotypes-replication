@@ -98,9 +98,9 @@ class Player(BasePlayer):
     Comprehension_2 = models.BooleanField(initial=True) 
     
     Comprehension_question_1 = models.BooleanField(choices=[
-            [True,'I will play 2 different tasks. Each task has 3 rounds.'], # Correct answer here
-            [False, 'I will play 3 different tasks. Each task has 3 rounds.'],
-            [False, 'I will play 2 different tasks. Each task has 2 rounds.'],],
+            [True,'I will play 2 different games. Each game has 3 rounds.'], # Correct answer here
+            [False, 'I will play 3 different games. Each game has 3 rounds.'],
+            [False, 'I will play 2 different games. Each game has 2 rounds.'],],
         label = 'Which of the following is correct?',
         widget=widgets.RadioSelect)
     
@@ -123,7 +123,7 @@ class Player(BasePlayer):
             [False, 'Switzerland'],
             [True, 'Russia'], 
             [False, 'India'] ],
-        label='<strong>Choose the country that was mentioned in the instructions.</strong>',
+        label='Choose the country that was mentioned in the instructions above.',
         widget=widgets.RadioSelect)
     HoneyPot = models.StringField(label='Please fill in some sentences here', blank=True) #honeypot to catch bots
     

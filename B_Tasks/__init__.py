@@ -95,7 +95,7 @@ class C(BaseConstants):
     In this task, you will see two pictures. 
     The picture on the left and the picture on the right are very similar but there are 10 differences.
     Your task is to find these differences and click on them on the <b>right picture</b>.
-    You can place at most 10 marks and you can change or remove them at any time. Once you have placed all your marks, you can submit your answers.
+    You can place at most 10 marks and you can change or remove them at any time.
     Each correctly marked difference counts as one problem solved. 
     <br><br>
     An example is depicted below. 
@@ -114,7 +114,8 @@ class C(BaseConstants):
     If this round is randomly chosen to determine your bonus payment,
     then you will receive <strong>{Piece_rate}</strong> USD per problem you solve correctly in this round. 
     Your payment is not influenced by the performance of others in your group.
-    Wrong answers do not decrease your payment. We call this payment scheme the <strong>"Piece-rate"</strong> payment, please remember this.'''
+    Wrong answers do not decrease your payment. We call this payment scheme the <strong>"Piece-rate"</strong> payment, please remember this.
+    '''
     
     Tournament_text = f'''<strong>Round 2. Payment information</strong>: If this round is chosen to determine your bonus payment,
         then you will receive either:
@@ -125,8 +126,6 @@ class C(BaseConstants):
     if anyone else in your group answers more problems correctly than you in this round.
     We call this payment scheme the <strong>"Tournament"</strong> payment, please remember this.
         </ul>
-        This round will start when you click "Continue". You will be given 2 minutes in total.
-    Throughout the round, a timer will display the remaining time.
         '''
 class Subsession(BaseSubsession):
     pass
@@ -175,8 +174,11 @@ def get_game(player):
     Treatment_math_or_memory = First_part
     
     Game1 = 'MathMemory'
+    
+    Game1_Page_title = Treatment_math_or_memory + ' game'
+    Game2_Page_title = Second_part + ' game'
 
-    return Game1, Second_part, Treatment_math_or_memory
+    return Game1, Second_part, Treatment_math_or_memory, Game1_Page_title, Game2_Page_title
         
 def get_game_text(player, game2, Tournament_for_Change_detection=False):
     if game2 == 'VisualMemory':
@@ -230,7 +232,7 @@ class Page1_G1_R1_E(MyBasePage):
     
     @staticmethod
     def vars_for_template(player: Player):
-        game1, game2, Treatment_math_or_memory = get_game(player)
+        _, _, Treatment_math_or_memory, Game1_title, _ = get_game(player)
         
         if Treatment_math_or_memory == 'Math':
             game1_explanation_text = C.MathMemory_text_Math
@@ -241,6 +243,7 @@ class Page1_G1_R1_E(MyBasePage):
         variables = MyBasePage.vars_for_template(player)
         variables['Game_explanation_text'] = game1_explanation_text
         variables['Game_explanation_pic'] = game1_explanation_pic
+        variables['Game_title'] = Game1_title
         return variables
     
 class Page2_G1_R1(MyBasePage):
@@ -252,7 +255,7 @@ class Page2_G1_R1(MyBasePage):
     
     @staticmethod
     def vars_for_template(player: Player):
-        game1, game2, Treatment_math_or_memory = get_game(player)
+        game1, game2, Treatment_math_or_memory, Game1_title, Game2_title = get_game(player)
         
         if Treatment_math_or_memory == 'Math':
             game1_explanation_text = C.MathMemory_text_Math
@@ -265,11 +268,13 @@ class Page2_G1_R1(MyBasePage):
         variables['Game_explanation_pic'] = game1_explanation_pic
         
         variables['Game_path'] = C.Math_memory_template_path
+        variables['Game_title'] = Game1_title
+
         return variables
     
     @staticmethod
     def js_vars(player):
-        game1, _, Treatment_math_or_memory = get_game(player)
+        game1, _, Treatment_math_or_memory, _, _ = get_game(player)
         return dict(
             game_name = game1,
             game_field_name = 'id_game1_Piece_rate',
@@ -282,10 +287,13 @@ class Page3_G1_R1_R(MyBasePage):
     @staticmethod
     def vars_for_template(player: Player):
         variables = MyBasePage.vars_for_template(player)
+        game1, game2, Treatment_math_or_memory, Game1_title, Game2_title = get_game(player)
+
 
         # players score in previous round
         variables['game1_score'] = player.game1_Piece_rate
         variables['Treatment'] = player.participant.Treatment   
+        variables['Game_title'] = Game1_title
         return variables
 
 class Page4_G1_R2_E(MyBasePage):
@@ -294,7 +302,7 @@ class Page4_G1_R2_E(MyBasePage):
     
     @staticmethod
     def vars_for_template(player: Player):
-        game1, game2, Treatment_math_or_memory = get_game(player)
+        game1, game2, Treatment_math_or_memory, Game1_title, Game2_title = get_game(player)
         
         if Treatment_math_or_memory == 'Math':
             game1_explanation_text = C.MathMemory_text_Math
@@ -307,6 +315,7 @@ class Page4_G1_R2_E(MyBasePage):
         variables['Game_explanation_pic'] = game1_explanation_pic
         
         variables['Game_path'] = C.Math_memory_template_path
+        variables['Game_title'] = Game1_title
         return variables
 
 class Page5_G1_R2(MyBasePage):
@@ -318,7 +327,7 @@ class Page5_G1_R2(MyBasePage):
     
     @staticmethod
     def vars_for_template(player: Player):
-        game1, game2, Treatment_math_or_memory = get_game(player)
+        game1, game2, Treatment_math_or_memory, Game1_title, Game2_title = get_game(player)
         
         if Treatment_math_or_memory == 'Math':
             game1_explanation_text = C.MathMemory_text_Math
@@ -331,11 +340,12 @@ class Page5_G1_R2(MyBasePage):
         variables['Game_explanation_pic'] = game1_explanation_pic
         
         variables['Game_path'] = C.Math_memory_template_path
+        variables['Game_title'] = Game1_title
         return variables
     
     @staticmethod
     def js_vars(player):
-        game1, _, Treatment_math_or_memory = get_game(player)
+        game1, _, Treatment_math_or_memory, _,_ = get_game(player)
         return dict(
             game_name = game1,
             game_field_name = 'id_game1_Tournament',
@@ -348,10 +358,12 @@ class Page6_G1_R2_R(MyBasePage):
     @staticmethod
     def vars_for_template(player: Player):
         variables = MyBasePage.vars_for_template(player)
+        game1, game2, Treatment_math_or_memory, Game1_title, Game2_title = get_game(player)
 
         # players score in previous round
         variables['game1_score'] = player.game1_Tournament
         variables['Treatment'] = player.participant.Treatment   
+        variables['Game_title'] = Game1_title
         return variables
     
 class Page7_G2_R1_E(MyBasePage):
@@ -360,7 +372,7 @@ class Page7_G2_R1_E(MyBasePage):
     
     @staticmethod
     def vars_for_template(player: Player):
-        game1, game2, Treatment_math_or_memory = get_game(player)
+        game1, game2, Treatment_math_or_memory, Game1_title, Game2_title = get_game(player)
         
         game2_explanation_text, game2_explanation_pic, game2_path  = get_game_text(player, game2)
         
@@ -369,6 +381,7 @@ class Page7_G2_R1_E(MyBasePage):
         variables['Game_explanation_pic'] = game2_explanation_pic
         
         variables['Game_path'] = game2_path
+        variables['Game_title'] = Game2_title
         return variables
     
 
@@ -382,7 +395,7 @@ class Page8_G2_R1(MyBasePage):
     
     @staticmethod
     def vars_for_template(player: Player):
-        game1, game2, Treatment_math_or_memory = get_game(player)
+        game1, game2, Treatment_math_or_memory, Game1_title, Game2_title = get_game(player)
         game2_explanation_text, game2_explanation_pic, game2_path  = get_game_text(player, game2)
                 
         variables = MyBasePage.vars_for_template(player)
@@ -390,11 +403,12 @@ class Page8_G2_R1(MyBasePage):
         variables['Game_explanation_pic'] =  game2_explanation_pic
         
         variables['Game_path'] =game2_path 
+        variables['Game_title'] = Game2_title
         return variables
 
     @staticmethod
     def js_vars(player):
-        _, game2, Treatment_math_or_memory = get_game(player)
+        _, game2, Treatment_math_or_memory, _, _ = get_game(player)
         return dict(
             game_name = game2,
             game_field_name = 'id_game2_Piece_rate',
@@ -404,10 +418,13 @@ class Page9_G2_R1_R(MyBasePage):
     extra_fields = [] 
     form_fields = MyBasePage.form_fields + extra_fields
     
+    
     @staticmethod
     def vars_for_template(player: Player):
+        game1, game2, Treatment_math_or_memory, Game1_title, Game2_title = get_game(player)
         variables = MyBasePage.vars_for_template(player)
         variables['Prev_Score'] = player.game2_Piece_rate
+        variables['Game_title'] = Game2_title
         return variables
     
         
@@ -417,12 +434,13 @@ class Page10_G2_R2_E(MyBasePage):
     
     @staticmethod
     def vars_for_template(player: Player):
-        game1, game2, Treatment_math_or_memory = get_game(player)
+        game1, game2, Treatment_math_or_memory, Game1_title, Game2_title = get_game(player)
         game2_explanation_text, game2_explanation_pic, game2_path  = get_game_text(player, game2)
                 
         variables = MyBasePage.vars_for_template(player)
         variables['Game_explanation_text'] = game2_explanation_text
         variables['Game_explanation_pic'] =  game2_explanation_pic
+        variables['Game_title'] = Game2_title
         
         variables['Game_path'] =game2_path 
         return variables
@@ -436,20 +454,20 @@ class Page11_G2_R2(MyBasePage):
     
     @staticmethod
     def vars_for_template(player: Player):
-        game1, game2, Treatment_math_or_memory = get_game(player)
+        game1, game2, Treatment_math_or_memory, Game1_title, Game2_title = get_game(player)
         game2_explanation_text, game2_explanation_pic, game2_path  = get_game_text(player, game2, Tournament_for_Change_detection=True)
                 
         variables = MyBasePage.vars_for_template(player)
         variables['Game_explanation_text'] = game2_explanation_text
         variables['Game_explanation_pic'] =  game2_explanation_pic
         variables['Game_path'] =game2_path 
-        
+        variables['Game_title'] = Game2_title
         
         return variables
     
     @staticmethod
     def js_vars(player):
-        _, game2, Treatment_math_or_memory = get_game(player)
+        _, game2, Treatment_math_or_memory, _, _ = get_game(player)
         return dict(
             game_name = game2,
             game_field_name = 'id_game2_Tournament',
@@ -463,7 +481,9 @@ class Page12_G2_R2_R(MyBasePage):
     def vars_for_template(player: Player):
 
         variables = MyBasePage.vars_for_template(player)
+        game1, game2, Treatment_math_or_memory, Game1_title, Game2_title = get_game(player)
         variables['prev_score'] = player.game2_Tournament
+        variables['Game_title'] = Game2_title
         
         return variables
     
@@ -473,12 +493,13 @@ class Page13_G1_Choice(MyBasePage):
     
     @staticmethod
     def vars_for_template(player: Player):
-        game1, game2, Treatment_math_or_memory = get_game(player)
+        game1, game2, Treatment_math_or_memory, Game1_title, Game2_title = get_game(player)
                 
         variables = MyBasePage.vars_for_template(player)
         variables['game1_name'] = game1
         variables['Game_explanation_pic'] =  C.MathMemory_pic
         variables['Prev_Score'] = player.game1_Piece_rate
+        variables['Game_title'] = Game2_title
         
         return variables
     
@@ -488,13 +509,14 @@ class Page14_G2_Choice(MyBasePage):
     
     @staticmethod
     def vars_for_template(player: Player):
-        game1, game2, Treatment_math_or_memory = get_game(player)
+        game1, game2, Treatment_math_or_memory, Game1_title, Game2_title = get_game(player)
         game2_explanation_text, game2_explanation_pic, game2_path  = get_game_text(player, game2)
                 
         variables = MyBasePage.vars_for_template(player)
-        variables['game2_name'] = game1
+        variables['game2_name'] = game2
         variables['Game_explanation_pic'] =  game2_explanation_pic
         variables['Prev_Score'] = player.game2_Piece_rate
+        variables['Game_title'] = Game2_title
         return variables
     
     

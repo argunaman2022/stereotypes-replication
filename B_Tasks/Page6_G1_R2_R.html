@@ -1,5 +1,5 @@
 {{ block title }}
-Game 1. Round 2. Results
+{{Game_title}}: Round 2. Results
 {{ endblock }}
 
 {{ block content }}
@@ -10,6 +10,8 @@ Game 1. Round 2. Results
 
     <p>
         In this round, your total score was {{game1_score}}. 
+        <br><br>
+        Next, you will play the second game. The final and third round of game 1 will be played after two rounds of the second game.
     </p>
 
 {% for field in form %}

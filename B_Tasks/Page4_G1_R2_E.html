@@ -1,5 +1,5 @@
 {{ block title }}
-    Game 1. Round 2. Explanation.
+{{Game_title}}: Round 2. Explanation.
 {{ endblock }}
 
 {{ block content }}
@@ -12,6 +12,8 @@
     <p>
         {{Game_explanation_text}}. 
         <br><br>
+        {{C.Tournament_text}}
+
         <div class="card bg-light m-3">
             <div class="card-body">
                 <p style="text-align: center;"><strong>Example</strong></p>
@@ -21,7 +23,6 @@
             </div>
         </div>
         <br><br>
-        {{C.Tournament_text}}
     </p>
 
 {% for field in form %}

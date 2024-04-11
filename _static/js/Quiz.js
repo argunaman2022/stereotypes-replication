@@ -85,6 +85,10 @@ document.addEventListener('DOMContentLoaded', function() {
         {"q": "What is the main purpose of the operating system?", "choices": ["Run applications", "Manage hardware", "Play video games", "Browse the internet"], "answer": "Manage Inernet"},
 ];
     
+    // Reset the local variables
+    localStorage.removeItem("currentQuestion");
+    localStorage.removeItem("timer");
+
     let game_field_name = js_vars.game_field_name;
     let currentQuestion = 0;
     let timer = 10;

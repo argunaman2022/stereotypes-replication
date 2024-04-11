@@ -1,5 +1,5 @@
 {{ block title }}
-    Game 2. Tournament or Piece-rate?
+{{Game_title}}: Tournament or Piece-rate?
 {{ endblock }}
 
 {{ block content }}
@@ -19,32 +19,23 @@
      You have so far played 2 rounds of the task <b>{{game2_name}}</b> task with the example picture above.
      This is the final round of this task.
       <strong>However</strong>, in this round you do not need to solve any more problems but choose whether you want to apply
-      the <strong>Piece-rate</strong> or the <strong>Tournament-rate</strong> scheme to your round 1 score.
-       If this round is the <strong>"bonus-relevant round"</strong>, your bonus payment will be determined in the following way: 
-            <ol>
-                <li> If you choose to apply the <strong>Tournament-rate</strong> scheme to your round 1 score, you will receive either: </li>
-                <ul>
-                    <li><strong>{{C.Tournament_rate}}</strong>$ per correctly solved problem in round 1, if in round 1 you solved more problems correctly than any of the other 5 people in your group in that round.</li>
-                    <li><strong>0</strong>$ if in round 1 anyone else in your group answered more problems correctly than you in this round.</li>
-                </ul>
-                <li> If you choose to apply the <strong>Piece-rate</strong> scheme to your round 1 score, 
-                    you will receive <strong>{{C.Piece_rate}}</strong>$ per problem you solved correctly in round 1.
-                     Your payment will not be influenced by the performance of others in your group.</li>
-                
-                </ol> 
+      the 
+      <strong>Piece-rate</strong> or the <strong>Tournament-rate</strong> scheme to your round 1 score. 
+            
+       <br><br>
         In round 1 of this task, <b>you solved {{Prev_Score}}</b> problem(s) correctly. 
-        Would you like to apply the <b>Piece-rate</b> or the <b>Tournament rate</b> scheme to this round?
-
-
+        Would you like to apply the <b>Piece-rate</b> or the <b>Tournament rate</b> scheme to your round 1 score?
+        Click <a id="myBtn" onclick="open_modal(3)"  class="otree-btn-next btn btn-primary">Here</a>
+        to read about Tournament vs Piece-rate again.
+       
     </p>
 
+    
     {% for field in form %}
     {% if field.name not in hidden_fields %}
         {{ formfield field.name }}
     {% endif %}
     {% endfor %}
-
-
 
 
 
@@ -63,6 +54,29 @@
         <a id="myBtn" onclick="open_modal(1)"  class="otree-btn-next btn btn-primary">Instructions</a>
         <button id="NextButton" class="otree-btn-next btn btn-primary">Next</button>
     </div>
+
+    <div id="myModal3" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+              <h2>Piece-rate vs Tournament rate</h2>
+              <span class="close" onclick="span_click(3)">&times;</span>
+            </div>
+          <p style="padding: 0px">
+            If this round is the <strong>"bonus-relevant round"</strong>, your bonus payment will be determined in the following way: 
+            <ol>
+                <li> If you choose to apply the <strong>Tournament-rate</strong> scheme to your round 1 score, you will receive either: </li>
+                <ul>
+                    <li><strong>{{C.Tournament_rate}}</strong>$ per correctly solved problem in round 1, if in round 1 you solved more problems correctly than any of the other 5 people in your group in that round.</li>
+                    <li><strong>0</strong>$ if in round 1 anyone else in your group answered more problems correctly than you in this round.</li>
+                </ul>
+                <li> If you choose to apply the <strong>Piece-rate</strong> scheme to your round 1 score, 
+                    you will receive <strong>{{C.Piece_rate}}</strong>$ per problem you solved correctly in round 1.
+                     Your payment will not be influenced by the performance of others in your group.</li>
+                
+                </ol> 
+          </p>
+        </div>
+    </div>
     
     
     <div id="myModal2" class="modal quit-modal">
@@ -70,7 +84,7 @@
           <div class="modal-header">
             <h2>You are about to quit the study</h2>
           </div>
-{{include C.Quit_study_text_path}}
+        {{include C.Quit_study_text_path}}
         <div class="buttons-container">
             <a id="myBtn" onclick="span_click(2)"  class="otree-btn-next btn btn-primary">Cancel</a>
             <a href="{{C.Return_redirect}}" class="otree-btn-next btn btn-primary">OK</a>
@@ -89,6 +103,8 @@
           </p>
         </div>
     </div>
+
+    
 
     <br><br>
 {{ endblock }}
