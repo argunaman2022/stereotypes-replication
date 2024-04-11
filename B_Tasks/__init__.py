@@ -482,7 +482,7 @@ class Page13_G1_Choice(MyBasePage):
         return variables
     
 class Page14_G2_Choice(MyBasePage):
-    extra_fields = ['game1_Competition_Choice'] 
+    extra_fields = ['game2_Competition_Choice'] 
     form_fields = MyBasePage.form_fields + extra_fields
     
     @staticmethod
