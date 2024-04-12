@@ -29,16 +29,22 @@ class C(BaseConstants):
     Instructions_path = "_templates/global/Instructions.html"
     Quit_study_text_path = "_templates/global/Quit_study_text.html"
     # Treatment quotas. This will be copied to the session variable.
-    quotas = {
-        # TODO: gender balance? Yes.
-        #TODO: add gender balancing
+    Female_quotas = {
     'Math_SpotTheDifference': 0,
     'Math_Quiz': 0,
     'Math_VisualMemory': 0,
     'Memory_SpotTheDifference': 0,
     'Memory_Quiz': 0,
-    'Memory_VisualMemory': 0,
+    'Memory_VisualMemory': 0,   
+    }
     
+    Male_quotas = {
+    'Math_SpotTheDifference': 0,
+    'Math_Quiz': 0,
+    'Math_VisualMemory': 0,
+    'Memory_SpotTheDifference': 0,
+    'Memory_Quiz': 0,
+    'Memory_VisualMemory': 0,   
     }
     
 class Subsession(BaseSubsession):
@@ -54,7 +60,8 @@ def creating_session(subsession):
     '''
         # people in v_1_first see the first version of the vignettes first.
 
-    subsession.session.Treatment_quotas = C.quotas.copy()
+    subsession.session.Male_quotas = C.Male_quotas.copy()
+    subsession.session.Female_quotas = C.Female_quotas.copy()
     
     for player in subsession.get_players():
         player.participant.Allowed = True
@@ -65,8 +72,10 @@ class Group(BaseGroup):
     pass
 
 class Player(BasePlayer):
-    # Demographics
+    # Basics
     treatment = models.StringField() #treatment assignment
+
+    # Demographics
     prolific_id = models.StringField(default=str("None")) #prolific id, will be fetched automatically.
     age = models.IntegerField(label="Age", min=18, max=100)
     gender = models.StringField(label='Gender at birth',
@@ -127,13 +136,18 @@ class Player(BasePlayer):
         widget=widgets.RadioSelect)
     HoneyPot = models.StringField(label='Please fill in some sentences here', blank=True) #honeypot to catch bots
     
-    'if the player has decided to quit'
-    # participant_quit = models.IntegerField(initial=0) #1 for true #TODO: currently not working. Add functionality: idea if a participant has been idle for a certain amount of time, then they are considered to have quit.
+    
     
 #%% Functions
 def treatment_assignment(player):
     session=player.subsession.session
-    Quotas = session.Treatment_quotas
+    
+    if player.gender == 'Male':
+        Quotas = session.Male_quotas
+    elif player.gender == 'Female':
+        Quotas = session.Female_quotas
+    elif player.gender == 'Other/Prefer not to say':
+        Quotas = session.Male_quotas
     
     #the line below does: splits the Quotas into two halves, picks one of them randomly from the bottom half.
     '''
@@ -143,21 +157,20 @@ def treatment_assignment(player):
     3. update quotas accordingly.
     '''
     treatment = random.choice([key for key, value in Quotas.items() if value in sorted(Quotas.values())[:1]])
-    print('Treatment:', treatment)
+    # print('Treatment:', treatment)
     player.participant.Treatment = treatment
     player.treatment = treatment
-    Quotas.update({treatment: Quotas[treatment]+1})
-    
+    if player.gender == 'Male':
+        Quotas.update({treatment: Quotas[treatment]+1})
+        session.Male_quotas = Quotas
+        # print('incrementing male quotas: ', Quotas)
+    elif player.gender == 'Female':
+        Quotas.update({treatment: Quotas[treatment]+1})
+        # print('incrementing female quotas: ', Quotas)
+        session.Female_quotas = Quotas
+        
 
-def reduce_quota(player):
-    #TODO: make sure whenever a participant leaves reduce quota is applied by calling this function in places where participants might leave
-    # e.g. when participants use the "quit study button, Beware! in prolific if participants leave without using the quit study button, 
-    # your quotas will not be adjusted.
-    'if a participant quits or fails the comprehension checks, reduce the quota for that treatment'
-    session=player.subsession.session
-    Quotas = session.Treatment_quotas
-    treatment = player.participant.Treatment
-    Quotas.update({treatment: Quotas[treatment]-1})
+
             
 # PAGES
 #%% Base Pages
@@ -173,9 +186,11 @@ class MyBasePage(Page):
     
     @staticmethod
     def vars_for_template(player: Player):
-        return {'hidden_fields': ['blur_event_counts'], #fields to be hidden from the participant e.g. browser, blur_event_counts, see the page to see how this works. #user_clicked_out
+        return {'hidden_fields': ['blur_event_counts', ], #fields to be hidden from the participant e.g. browser, blur_event_counts, see the page to see how this works. #user_clicked_out
                 'Instructions': C.Instructions_path,
                 'Treatment': player.participant.Treatment,}  
+        
+
 
 #%% Pages
 
@@ -184,7 +199,7 @@ class Consent(Page):
     @staticmethod
     def before_next_page(player: Player, timeout_happened=False):
         player.prolific_id = player.participant.label #save prolific id
-        treatment_assignment(player) #assign treatment and update quotas 
+        player.participant.Treatment = 'Init'
 
 class Demographics(MyBasePage):
     extra_fields = ['age', 'gender', 'education', 'income','browser', 'HoneyPot'] 
@@ -198,14 +213,13 @@ class Demographics(MyBasePage):
         variables['hidden_fields'].extend(['browser', 'HoneyPot']) 
         return variables
     
+    @staticmethod
+    def before_next_page(player: Player, timeout_happened=False):
+        treatment_assignment(player) #assign treatment and update quotas 
+    
 class Instructions(MyBasePage):
     pass        
-    # @staticmethod   
-    # def before_next_page(player: Player, timeout_happened=False):
-    #     if player.participant_quit:
-    #         player.participant.vars['Allowed'] = False
-    #         player.participant.Quit_study = True
-    #         reduce_quota(player)
+
             
 class Comprehension_check_1(MyBasePage):
     extra_fields = ['Comprehension_question_1', 'Comprehension_question_2', 'Comprehension_question_3']

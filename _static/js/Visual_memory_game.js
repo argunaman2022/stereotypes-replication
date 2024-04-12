@@ -148,7 +148,7 @@ function resetGame(){
       $(Source + " div").click(OpenCard); 
       ShuffleImages(); // Shuffle the new images
     }
-  , 2000); // 2-second delay before next box (i.e. before the new grid is displayed)
+  , 1000); // 2-second delay before next box (i.e. before the new grid is displayed)
   }
 
   // Function to handle card clicks

@@ -12,3 +12,10 @@ function span_click(index){
 function Completion_button(href) {
   window.open(href, "_blank");
 }
+
+function participant_quit(href) {
+  // Press next button such that participant cannot return
+  console.log("Participant quit")
+  document.getElementById("id_participant_quit").value = 1;
+  window.open(href, "_blank");
+}
