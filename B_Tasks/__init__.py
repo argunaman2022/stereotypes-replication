@@ -8,6 +8,7 @@ This is the main survey app. It contains
 2. One attention check.
 - You can additionally calculate payoffs and save them at a participant field.
 '''
+#TODO: set the otree produiction value to True in otreehub
 # TODO:scoring of each game (missing: change detection)
 class C(BaseConstants):
     NAME_IN_URL = 'Study_Name'
@@ -28,8 +29,8 @@ class C(BaseConstants):
     Math_memory_template_path = "_templates/global/Math_memory.html"
     Visual_memory_template_path = "_templates/global/Visual_memory.html"
     Quiz_template_path = "_templates/global/Quiz.html"
-    SpotTheDifference_template_path = "_templates/global/Change_Detection.html"
-    SpotTheDifference_template_Tournament_path = "_templates/global/Change_Detection_Tournament.html"
+    SpotTheDifference_template_path = "_templates/global/Change_detection.html"
+    SpotTheDifference_template_Tournament_path = "_templates/global/Change_detection_Tournament.html"
     
     Round_length = 120
     Timer_text = "Time left to complete this round:"
