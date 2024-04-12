@@ -1,5 +1,6 @@
 from otree.api import *
 import random
+import numpy as np
 
 doc = '''
 This is the main survey app. It contains
@@ -31,8 +32,9 @@ class C(BaseConstants):
     SpotTheDifference_template_path = "_templates/global/Change_Detection.html"
     SpotTheDifference_template_Tournament_path = "_templates/global/Change_Detection_Tournament.html"
     
-    Round_length = 3600 #TODO: change this to 120
+    Round_length = 120
     Timer_text = "Time left to complete this round:"
+    Completion_redirect = 'https://www.wikipedia.org/' #TODO: adjust redirect
     
     
     # Game explanation texts
@@ -135,6 +137,7 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):   
+    bonus_payoff = models.FloatField(initial=0)
     # Attention check 2, 1 was in introduction 
     Attention_2 = models.BooleanField(choices=[
             [True, 'I disagree.'],
@@ -197,6 +200,7 @@ def get_game_text(player, game2, Tournament_for_Change_detection=False):
             game2_path = C.SpotTheDifference_template_Tournament_path
     
     return game2_explanation_text, game2_explanation_pic, game2_path
+
  
  #%% Base Pages
 class MyBasePage(Page):
@@ -483,7 +487,7 @@ class Page12_G2_R2_R(MyBasePage):
         variables = MyBasePage.vars_for_template(player)
         game1, game2, Treatment_math_or_memory, Game1_title, Game2_title = get_game(player)
         variables['prev_score'] = player.game2_Tournament
-        variables['Game_title'] = Game2_title
+        variables['Game_title'] = Game1_title
         
         return variables
     
@@ -499,7 +503,7 @@ class Page13_G1_Choice(MyBasePage):
         variables['game1_name'] = game1
         variables['Game_explanation_pic'] =  C.MathMemory_pic
         variables['Prev_Score'] = player.game1_Piece_rate
-        variables['Game_title'] = Game2_title
+        variables['Game_title'] = Game1_title
         
         return variables
     
@@ -519,12 +523,88 @@ class Page14_G2_Choice(MyBasePage):
         variables['Game_title'] = Game2_title
         return variables
     
+    @staticmethod
+    def before_next_page(player: Player, timeout_happened=False):
+        # choose 1 of the 6 rounds randomly as the bonus_relevant_round
+        bonus_relevant_round = np.random.choice([1, 2, 3, 4, 5, 6])
+                
+        # if round is G1R1 or G2R1 multiply that with the piece rate with the number of correct solutions in those rounds
+        # if round is G1R2 or G2R2 ex post matching based on win status
+        # if round is G1R3 or G2R3 multiply that with the piece rate if the player has chosen Piece rate in these rounds,
+        # else ex post matching based on win status
+
+        if bonus_relevant_round == 1:
+            player.bonus_payoff = round(player.game1_Piece_rate*C.Piece_rate, 2)
+        elif bonus_relevant_round == 3:
+            player.bonus_payoff = round(player.game2_Piece_rate*C.Piece_rate, 2)
+        elif bonus_relevant_round == 5 and not player.game1_Competition_Choice:
+            player.bonus_payoff = round(player.game1_Piece_rate*C.Piece_rate, 2)
+        elif bonus_relevant_round == 6 and not player.game2_Competition_Choice:
+            player.bonus_payoff = round(player.game2_Piece_rate*C.Piece_rate, 2)
+
+        player.participant.bonus_payoff = player.bonus_payoff
+        player.participant.bonus_relevant_round = bonus_relevant_round
     
+class Results(Page):
+    @staticmethod
+    def vars_for_template(player: Player):
+        variables = MyBasePage.vars_for_template(player)
+        bonus_relevant_round = player.participant.bonus_relevant_round
+        bonus_payoff = player.participant.bonus_payoff
+
+        if bonus_relevant_round == 1:
+            score = player.game1_Piece_rate
+            bonus_message = f'''Round {bonus_relevant_round} was randomly selected to be the bonus-relevant round.
+            In this round you completed {score} questions correctly.
+            As a result your bonus payment is {bonus_payoff} USD = {bonus_payoff/C.Piece_rate} * {C.Piece_rate} USD.'''
+        elif bonus_relevant_round == 2:
+            score = player.game1_Tournament
+            piece_rate = False
+            bonus_message = f'''Round {bonus_relevant_round} was randomly selected to be the bonus-relevant round.
+            In this round you completed {score} questions correctly. As a result,
+            once all the participants have finished, you will earn {score*C.Tournament_rate} USD if you have answered more questions correctly than the other 5 people in your group.'''
+        elif bonus_relevant_round == 3:
+            score = player.game2_Piece_rate
+            bonus_message = f'''Round {bonus_relevant_round} was randomly selected to be the bonus-relevant round.
+            In this round you completed {score} questions correctly.
+            As a result your bonus payment is {bonus_payoff} USD = {bonus_payoff/C.Piece_rate} * {C.Piece_rate} USD.'''
+        elif bonus_relevant_round == 4:
+            score = player.game2_Tournament
+            bonus_message = f'''Round {bonus_relevant_round} was randomly selected to be the bonus-relevant round.
+            In this round you completed {score} questions correctly. As a result,
+            once all the participants have finished, you will earn {score*C.Tournament_rate} USD if you have answered more questions correctly than the other 5 people in your group.'''            
+        elif bonus_relevant_round == 5 and player.game1_Competition_Choice:
+            score = player.game1_Piece_rate
+            bonus_message = f'''Round {bonus_relevant_round} was randomly selected to be the bonus-relevant round.
+            In round 1 of Game 1 you completed {score} questions correctly and you chose to apply Tournament rate to your round 1 performance.
+            once all the participants have finished, you will earn {score*C.Tournament_rate} USD if you have answered more questions correctly than the other 5 people in your group in this round.'''            
+        elif bonus_relevant_round == 5 and not player.game2_Competition_Choice:
+            score = player.game1_Piece_rate
+            bonus_message = f'''Round {bonus_relevant_round} was randomly selected to be the bonus-relevant round.
+            In round 1 of Game 1 you completed {score} questions correctly and you chose to apply Piece-rate to your round 1 performance.
+            As a result your bonus payment is {bonus_payoff} USD = {bonus_payoff/C.Piece_rate} * {C.Piece_rate} USD..'''            
+        elif bonus_relevant_round == 6 and player.game2_Competition_Choice:
+            score = player.game2_Piece_rate
+            bonus_message = f'''Round {bonus_relevant_round} was randomly selected to be the bonus-relevant round.
+            In round 1 of Game 2 you completed {score} questions correctly and you chose to apply Tournament rate to your round 1 performance. As a result,
+            once all the participants have finished, you will earn {score*C.Tournament_rate} USD if you have answered more questions correctly than the other 5 people in your group in this round.'''            
+        elif bonus_relevant_round == 6 and not player.game2_Competition_Choice:
+            score = player.game2_Piece_rate
+            bonus_message = f'''Round {bonus_relevant_round} was randomly selected to be the bonus-relevant round.
+            In round 1 of Game 2 you completed {score} questions correctly and you chose to apply Piece-rate to your round 1 performance.
+            As a result your bonus payment is {bonus_payoff} USD = {bonus_payoff/C.Piece_rate} * {C.Piece_rate} USD..'''      
+                    
+       
+        variables['bonus_message'] = bonus_message
+        return variables
+    pass
+
 page_sequence = [
     Page1_G1_R1_E, Page2_G1_R1, Page3_G1_R1_R,
     Attention_check_2,
     Page4_G1_R2_E, Page5_G1_R2, Page6_G1_R2_R,
     Page7_G2_R1_E, Page8_G2_R1, Page9_G2_R1_R,
     Page10_G2_R2_E, Page11_G2_R2, Page12_G2_R2_R,
-    Page13_G1_Choice, Page14_G2_Choice
+    Page13_G1_Choice, Page14_G2_Choice,
+    Results
     ]

@@ -46,13 +46,10 @@ class MyBasePage(Page):
     
     @staticmethod
     def vars_for_template(player: Player):
-        return {'hidden_fields': ['bullshit'], #hide the browser field from the participant, see the page to see how this works. #user_clicked_out
+        return {'hidden_fields': ['blur_event_counts'], #hide the browser field from the participant, see the page to see how this works. #user_clicked_out
                 'Instructions': C.Instructions_path} 
 
 #%% Pages
-
-class Results(Page):
-    pass
 
 
 class Failed_screening(MyBasePage):
@@ -86,4 +83,4 @@ class Failed_attention(MyBasePage):
             completion_link = C.Failure_redirect
         )
 
-page_sequence = [Results, Failed_screening, Failed_attention]
+page_sequence = [Failed_screening, Failed_attention]

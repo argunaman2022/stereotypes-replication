@@ -2,7 +2,7 @@ from os import environ
 
 SESSION_CONFIGS = [
     #TODO: remove pilot1 from the app_sequence
-    dict(name='Study', app_sequence=['A_Introduction','B_Tasks',  'Pilot', 'Z_Results'], num_demo_participants=200,
+    dict(name='Study', app_sequence=['A_Introduction','B_Tasks',  'Pilot', 'Z_Failure'], num_demo_participants=200,
          completionlink='prolific completion link!!!!!!'), #TODO: add the proper completion link from prolific
 
 ]
@@ -22,7 +22,7 @@ SESSION_CONFIG_DEFAULTS = dict(
 )
 PARTICIPANT_FIELDS = [
     'Allowed','Comprehension_passed', 'Attention_passed',
-    'Treatment'
+    'Treatment', 'bonus_payoff', 'bonus_relevant_round'
 ]
 SESSION_FIELDS = {
                     'Treatment_quotas':{} 
