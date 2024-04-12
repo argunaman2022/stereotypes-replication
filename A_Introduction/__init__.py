@@ -30,11 +30,6 @@ class C(BaseConstants):
     Quit_study_text_path = "_templates/global/Quit_study_text.html"
     # Treatment quotas. This will be copied to the session variable.
     Female_quotas = {
-<<<<<<< HEAD
-=======
-        # TODO: gender balance? Yes.
-        #TODO: add gender balancing
->>>>>>> b771d9cab53fa4cd6eae91676db2d913feb27416
     'Math_SpotTheDifference': 0,
     'Math_Quiz': 0,
     'Math_VisualMemory': 0,
@@ -44,11 +39,6 @@ class C(BaseConstants):
     }
     
     Male_quotas = {
-<<<<<<< HEAD
-=======
-        # TODO: gender balance? Yes.
-        #TODO: add gender balancing
->>>>>>> b771d9cab53fa4cd6eae91676db2d913feb27416
     'Math_SpotTheDifference': 0,
     'Math_Quiz': 0,
     'Math_VisualMemory': 0,
