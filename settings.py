@@ -25,7 +25,7 @@ PARTICIPANT_FIELDS = [
     'Treatment', 'bonus_payoff', 'bonus_relevant_round'
 ]
 SESSION_FIELDS = {
-                    'Treatment_quotas':{} 
+                    'Male_quotas':{}, 'Female_quotas':{} 
                  }
 
 # ISO-639 code

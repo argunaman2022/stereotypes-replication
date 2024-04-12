@@ -561,7 +561,7 @@ class Results(Page):
             piece_rate = False
             bonus_message = f'''Round {bonus_relevant_round} was randomly selected to be the bonus-relevant round.
             In this round you completed {score} questions correctly. As a result,
-            once all the participants have finished, you will earn {score*C.Tournament_rate} USD if you have answered more questions correctly than the other 5 people in your group.'''
+            Once all the participants have finished, you will earn {score*C.Tournament_rate} USD if you have answered more questions correctly than the other 5 people in your group.'''
         elif bonus_relevant_round == 3:
             score = player.game2_Piece_rate
             bonus_message = f'''Round {bonus_relevant_round} was randomly selected to be the bonus-relevant round.
@@ -571,12 +571,12 @@ class Results(Page):
             score = player.game2_Tournament
             bonus_message = f'''Round {bonus_relevant_round} was randomly selected to be the bonus-relevant round.
             In this round you completed {score} questions correctly. As a result,
-            once all the participants have finished, you will earn {score*C.Tournament_rate} USD if you have answered more questions correctly than the other 5 people in your group.'''            
+            Once all the participants have finished, you will earn {score*C.Tournament_rate} USD if you have answered more questions correctly than the other 5 people in your group.'''            
         elif bonus_relevant_round == 5 and player.game1_Competition_Choice:
             score = player.game1_Piece_rate
             bonus_message = f'''Round {bonus_relevant_round} was randomly selected to be the bonus-relevant round.
             In round 1 of Game 1 you completed {score} questions correctly and you chose to apply Tournament rate to your round 1 performance.
-            once all the participants have finished, you will earn {score*C.Tournament_rate} USD if you have answered more questions correctly than the other 5 people in your group in this round.'''            
+            Once all the participants have finished, you will earn {score*C.Tournament_rate} USD if you have answered more questions correctly than the other 5 people in your group in this round.'''            
         elif bonus_relevant_round == 5 and not player.game2_Competition_Choice:
             score = player.game1_Piece_rate
             bonus_message = f'''Round {bonus_relevant_round} was randomly selected to be the bonus-relevant round.
@@ -586,7 +586,7 @@ class Results(Page):
             score = player.game2_Piece_rate
             bonus_message = f'''Round {bonus_relevant_round} was randomly selected to be the bonus-relevant round.
             In round 1 of Game 2 you completed {score} questions correctly and you chose to apply Tournament rate to your round 1 performance. As a result,
-            once all the participants have finished, you will earn {score*C.Tournament_rate} USD if you have answered more questions correctly than the other 5 people in your group in this round.'''            
+            Once all the participants have finished, you will earn {score*C.Tournament_rate} USD if you have answered more questions correctly than the other 5 people in your group in this round.'''            
         elif bonus_relevant_round == 6 and not player.game2_Competition_Choice:
             score = player.game2_Piece_rate
             bonus_message = f'''Round {bonus_relevant_round} was randomly selected to be the bonus-relevant round.
