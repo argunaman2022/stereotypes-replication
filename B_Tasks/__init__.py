@@ -9,7 +9,6 @@ This is the main survey app. It contains
 - You can additionally calculate payoffs and save them at a participant field.
 '''
 # TODO:scoring of each game (missing: change detection)
-#TODO: bonus calculations piece rate vs tournament results.
 class C(BaseConstants):
     NAME_IN_URL = 'Study_Name'
     PLAYERS_PER_GROUP = None
@@ -111,7 +110,6 @@ class C(BaseConstants):
     SpotTheDifference_pic = 'https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/ChangeDetection_pic.png'
     
     ## Piece rate vs Tournament
-    #TODO: this doesn't work well with some tasks because of the wording of the tasks i.e. in math memory you don't "solve" problems
     Piece_rate_text = f'''<strong>Round 1. Payment information</strong>:
     If this round is randomly chosen to determine your bonus payment,
     then you will receive <strong>{Piece_rate}</strong> USD per problem you solve correctly in this round. 
