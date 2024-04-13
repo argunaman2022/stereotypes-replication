@@ -22,7 +22,7 @@ SESSION_CONFIG_DEFAULTS = dict(
 )
 PARTICIPANT_FIELDS = [
     'Allowed','Comprehension_passed', 'Attention_passed',
-    'Treatment', 'bonus_payoff', 'bonus_relevant_round'
+    'Treatment', 'bonus_payoff', 'bonus_relevant_round', 'score','bonus_message'
 ]
 SESSION_FIELDS = {
                     'Male_quotas':{}, 'Female_quotas':{} 

@@ -62,6 +62,7 @@ class Player(BasePlayer):
                             choices=['No difficulty at all', 'Some difficulty', 'Moderate difficulty', 'A lot of difficulty'],
                             widget=widgets.RadioSelectHorizontal
             )
+    Pilot9 = models.LongStringField(label='Any other comments or feedback? (optional)', blank=True)
 
 # PAGES
 
@@ -85,7 +86,7 @@ class MyBasePage(Page):
 
 class Pilot(MyBasePage):
     form_model = 'player'
-    form_fields = ['Pilot1', 'Pilot3','Pilot2',  'Pilot4', 'Pilot5', 'Pilot6', 'Pilot7', 'Pilot8', ]
+    form_fields = ['Pilot1', 'Pilot3','Pilot2',  'Pilot4', 'Pilot5', 'Pilot6', 'Pilot7', 'Pilot8', 'Pilot9' ]
     
 
 page_sequence = [Pilot]

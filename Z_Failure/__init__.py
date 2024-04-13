@@ -50,7 +50,14 @@ class MyBasePage(Page):
                 'Instructions': C.Instructions_path} 
 
 #%% Pages
+class Results(Page):
+    @staticmethod
+    def vars_for_template(player: Player):
+        variables = MyBasePage.vars_for_template(player)
 
+        bonus_message = player.participant.bonus_message
+        variables['bonus_message'] = bonus_message
+        return variables
 
 class Failed_screening(MyBasePage):
     'This page is displayed if the player failed the comprehension checks'
@@ -83,4 +90,4 @@ class Failed_attention(MyBasePage):
             completion_link = C.Failure_redirect
         )
 
-page_sequence = [Failed_screening, Failed_attention]
+page_sequence = [Results, Failed_screening, Failed_attention]
