@@ -153,7 +153,7 @@ function image_source() {
   }
   else {
     // break out of loop and display final message
-    $("#transitionMessage").text("You completed all the boxes and finished this round before timer ran out. You receive maximum points from this round! Congratulations!");
+    $("#transitionMessage").text("You completed all the boxes and finished this round before the timer ran out. You receive maximum points from this round! Congratulations!");
     $("#transitionMessage").show();
     return;
   }

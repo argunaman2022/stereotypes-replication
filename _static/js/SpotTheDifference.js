@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function updateCirclesCount() {
         circlesCountElement.innerText = `Circles placed: ${userMarks.length}/10`;
         if (userMarks.length >= maxScore) {
-            circlesCountElement.innerText = `Circles placed: ${userMarks.length}/10. \n Maximum number of ricles reached. You can unclick some if you want to make changes.`;
+            circlesCountElement.innerText = `Circles placed: ${userMarks.length}/10. \n Maximum number of circles reached. You can unclick some if you want to make changes.`;
     }
 }
 
