@@ -284,7 +284,7 @@ function OpenCard() {
 
     if (ImgFound == ImgSource.length*(BoxesSolved+1)/2) {
       if (BoxesSolved == Max_boxes-1) {
-        $("#transitionMessage").text("You completed all the boxes and finished this round before timer ran out! Congratulations!");
+        $("#transitionMessage").text("You completed all the boxes and finished this round before the timer ran out! Congratulations!");
         $("#transitionMessage").show();
       }
       else {

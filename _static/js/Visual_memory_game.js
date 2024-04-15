@@ -134,7 +134,7 @@ function image_source() {
   }
   else {
     // break out of loop and display final message
-    $("#transitionMessage").text("You completed all the boxes and finished this round before timer ran out. You receive maximum points from this round! Congratulations!");
+    $("#transitionMessage").text("You completed all the boxes and finished this round before the timer ran out. You receive maximum points from this round! Congratulations!");
     $("#transitionMessage").show();
     return;
   }
@@ -216,7 +216,7 @@ function OpenCard() {
 
     if (ImgFound == ImgSource.length*(BoxesSolved+1)) {
       if (BoxesSolved == Max_boxes-1) {
-        $("#transitionMessage").text("You completed all the boxes and finished this round before timer ran out! Congratulations!");
+        $("#transitionMessage").text("You completed all the boxes and finished this round before the timer ran out! Congratulations!");
         $("#transitionMessage").show();
       }
       else {
