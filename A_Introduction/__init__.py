@@ -65,6 +65,7 @@ def creating_session(subsession):
     
     for player in subsession.get_players():
         player.participant.Allowed = True
+        player.participant.Attention_passed = True
         player.participant.Comprehension_passed = False 
             
 

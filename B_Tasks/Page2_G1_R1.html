@@ -17,7 +17,6 @@
 
 {% for field in form %}
     {% if field.name not in hidden_fields %}
-    <!-- TODO: hide diplay: none -->
     <div style="display: none;">
     {{ formfield field.name }}
     </div>    

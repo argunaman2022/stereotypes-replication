@@ -52,18 +52,23 @@ class MyBasePage(Page):
 #%% Pages
 class Results(Page):
     @staticmethod
+    def is_displayed(player: Player):
+        return player.participant.Allowed
+    
+    @staticmethod
     def vars_for_template(player: Player):
         variables = MyBasePage.vars_for_template(player)
-
-        bonus_message = player.participant.bonus_message
-        variables['bonus_message'] = bonus_message
+        if player.participant.Allowed:
+            bonus_message = player.participant.bonus_message
+            variables['bonus_message'] = bonus_message
+            
         return variables
 
 class Failed_screening(MyBasePage):
     'This page is displayed if the player failed the comprehension checks'
     @staticmethod
     def is_displayed(player: Player):
-        return player.participant.Comprehension_passed 
+        return not player.participant.Comprehension_passed 
 
     @staticmethod
     def vars_for_template(player: Player):

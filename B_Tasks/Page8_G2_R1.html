@@ -17,7 +17,7 @@
 
     {% for field in form %}
     {% if field.name not in hidden_fields %}
-    <div style="display: none;"> 
+    <div style="display: inline;"> 
     {{ formfield field.name }}
     </div>    
     {% endif %}

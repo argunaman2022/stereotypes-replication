@@ -43,7 +43,7 @@ class C(BaseConstants):
     You will see a box with 12 cells. Behind each cell is a simple addition of two one-digit numbers (e.g. 1+2).
     Your task is to find the matching pairs by clicking on the corresponding cells.
     When you find a matching pair, these cells will disappear.
-    Once you finish one box, a next box will appear. In total, there are at maximum 4 boxes.
+    Once you finish one box, another will appear.
     Each pair found counts as one problem correctly solved!
     <br><br>
     We expect that those with stronger <b>math skills</b> will perform better.
@@ -58,7 +58,7 @@ class C(BaseConstants):
     When you find a matching pair, these cells will disappear.
     <br>
     We expect that those with stronger <b>memory skills</b> will perform better.
-    Once you finish one box, a next box will appear. In total, there are at maximum 4 boxes.
+    Once you finish one box, another will appear.
     Each pair found counts as one problem correctly solved!
     <br><br>
     An example problem is depicted below. In this picture, 1+2 and 3+0 are matching pairs, since they both equal 3.
@@ -72,7 +72,7 @@ class C(BaseConstants):
    There are 6 identical animals in these 12 cells.
    Your task is to find these matching pairs by clicking on the corresponding cells.
    When you find a matching pair, these cells will disappear.
-   Once you finish one box, a next box will appear. In total, there are at maximum 4 boxes.
+   Once you finish one box, another will appear.
     Each pair found counts as one problem correctly solved!
     <br><br>
     An example problem is depicted below.
@@ -113,7 +113,7 @@ class C(BaseConstants):
     ## Piece rate vs Tournament
     Piece_rate_text = f'''<strong>Round 1. Payment information</strong>:
     If this round is randomly chosen to determine your bonus payment,
-    then you will receive <strong>{Piece_rate}</strong> USD per problem you solve correctly in this round. 
+    then you will receive <strong>{Piece_rate}</strong>$ per problem you solve correctly in this round. 
     Your payment is not influenced by the performance of others in your group.
     Wrong answers do not decrease your payment. We call this payment scheme the <strong>"Piece-rate"</strong> payment, please remember this.
     '''
@@ -121,9 +121,10 @@ class C(BaseConstants):
     Tournament_text = f'''<strong>Round 2. Payment information</strong>: If this round is chosen to determine your bonus payment,
         then you will receive either:
         <ul>
-            <li> <strong>{Tournament_rate}</strong> USD per correctly solved problem in this round,
-    if you answer more problems correctly than any of the other 5 people in your group in this round. 
-            <li> <strong>0</strong> USD per correctly solved problem,
+            <li> <strong>{Tournament_rate}</strong>$ per correctly solved problem in this round,
+    if you answer more problems correctly than any of the other 5 people in your group.
+    In case of two or more people having the same highest score, the winner is determined randomly.
+            <li> <strong>0</strong>$ per correctly solved problem,
     if anyone else in your group answers more problems correctly than you in this round.
     We call this payment scheme the <strong>"Tournament"</strong> payment, please remember this.
         </ul>
@@ -537,45 +538,45 @@ class Page14_G2_Choice(MyBasePage):
             participant.score = player.game1_Piece_rate
             participant.bonus_message = f'''Round {bonus_relevant_round} was randomly selected to be the bonus-relevant round.
             In this round you completed {participant.score} questions correctly.
-            As a result your bonus payment is {player.bonus_payoff} USD = {player.bonus_payoff/C.Piece_rate} * {C.Piece_rate} USD.'''
+            As a result your bonus payment is {participant.bonus_payoff}$ = {participant.bonus_payoff/C.Piece_rate} * {C.Piece_rate}$.'''
         elif bonus_relevant_round == 2:
             participant.score = player.game1_Tournament
             participant.bonus_message = f'''Round {bonus_relevant_round} was randomly selected to be the bonus-relevant round.
             In this round you completed {participant.score} questions correctly. As a result,
-            Once all the participants have finished, you will earn {participant.score*C.Tournament_rate} USD if you have answered more questions correctly than the other 5 people in your group.'''
+            Once all the participants have finished, you will earn {participant.score*C.Tournament_rate}$ if you have answered more questions correctly than the other 5 people in your group.'''
         elif bonus_relevant_round == 3:
-            participant.player.bonus_payoff = round(player.game2_Piece_rate*C.Piece_rate, 2)
+            participant.bonus_payoff = round(player.game2_Piece_rate*C.Piece_rate, 2)
             participant.score = player.game2_Piece_rate
             participant.bonus_message = f'''Round {bonus_relevant_round} was randomly selected to be the bonus-relevant round.
             In this round you completed {participant.score} questions correctly.
-            As a result your bonus payment is {player.bonus_payoff} USD = {player.bonus_payoff/C.Piece_rate} * {C.Piece_rate} USD.'''
+            As a result your bonus payment is {participant.bonus_payoff}$ = {participant.score} * {C.Piece_rate}$.'''
         elif bonus_relevant_round == 4:
             participant.score = player.game2_Tournament
             participant.bonus_message = f'''Round {bonus_relevant_round} was randomly selected to be the bonus-relevant round.
             In this round you completed {participant.score} questions correctly. As a result,
-            Once all the participants have finished, you will earn {participant.score*C.Tournament_rate} USD if you have answered more questions correctly than the other 5 people in your group.'''            
+            Once all the participants have finished, you will earn {participant.score*C.Tournament_rate}$ if you have answered more questions correctly than the other 5 people in your group.'''            
         elif bonus_relevant_round == 5 and player.game1_Competition_Choice:
             participant.score = player.game1_Piece_rate
             participant.bonus_message = f'''Round {bonus_relevant_round} was randomly selected to be the bonus-relevant round.
             In round 1 of Game 1 you completed {participant.score} questions correctly and you chose to apply Tournament rate to your round 1 performance.
-            Once all the participants have finished, you will earn {participant.score*C.Tournament_rate} USD if you have answered more questions correctly than the other 5 people in your group in this round.'''            
+            Once all the participants have finished, you will earn {participant.score*C.Tournament_rate}$ if you have answered more questions correctly than the other 5 people in your group in this round.'''            
         elif bonus_relevant_round == 5 and not player.game2_Competition_Choice:
-            participant.player.bonus_payoff = round(player.game1_Piece_rate*C.Piece_rate, 2)
+            participant.bonus_payoff = round(player.game1_Piece_rate*C.Piece_rate, 2)
             participant.score = player.game1_Piece_rate
             participant.bonus_message = f'''Round {bonus_relevant_round} was randomly selected to be the bonus-relevant round.
             In round 1 of Game 1 you completed {participant.score} questions correctly and you chose to apply Piece-rate to your round 1 performance.
-            As a result your bonus payment is {player.bonus_payoff} USD = {player.bonus_payoff/C.Piece_rate} * {C.Piece_rate} USD..'''            
+            As a result your bonus payment is {participant.bonus_payoff}$ = {participant.bonus_payoff/C.Piece_rate} * {C.Piece_rate}$..'''            
         elif bonus_relevant_round == 6 and player.game2_Competition_Choice:
             participant.score = player.game2_Piece_rate
             participant.bonus_message = f'''Round {bonus_relevant_round} was randomly selected to be the bonus-relevant round.
             In round 1 of Game 2 you completed {participant.score} questions correctly and you chose to apply Tournament rate to your round 1 performance. As a result,
-            Once all the participants have finished, you will earn {participant.score*C.Tournament_rate} USD if you have answered more questions correctly than the other 5 people in your group in this round.'''            
+            Once all the participants have finished, you will earn {participant.score*C.Tournament_rate}$ if you have answered more questions correctly than the other 5 people in your group in this round.'''            
         elif bonus_relevant_round == 6 and not player.game2_Competition_Choice:
-            participant.player.bonus_payoff = round(player.game2_Piece_rate*C.Piece_rate, 2)
+            participant.bonus_payoff = round(player.game2_Piece_rate*C.Piece_rate, 2)
             participant.score = player.game2_Piece_rate
             participant.bonus_message = f'''Round {bonus_relevant_round} was randomly selected to be the bonus-relevant round.
             In round 1 of Game 2 you completed {participant.score} questions correctly and you chose to apply Piece-rate to your round 1 performance.
-            As a result your bonus payment is {player.bonus_payoff} USD = {player.bonus_payoff/C.Piece_rate} * {C.Piece_rate} USD..'''      
+            As a result your bonus payment is {participant.bonus_payoff}$ = {participant.bonus_payoff/C.Piece_rate} * {C.Piece_rate}$..'''      
                     
 
         
