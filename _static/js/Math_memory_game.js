@@ -4,7 +4,7 @@ var ImgOpened = ""; // Image source of the first opened card
 var Counter = 0;    // Number of player moves
 var ImgFound = 0;   // Number of matching pairs found
 var BoxesSolved = 0; // Number of boxes solved
-var Max_boxes = 4 // Number of boxes to solve to complete the game 
+var Max_boxes = 6 // Number of boxes to solve to complete the game 
 let game_field_name = js_vars.game_field_name;
 console.log('math memory loaded')
 

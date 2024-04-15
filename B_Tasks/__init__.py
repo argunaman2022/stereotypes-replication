@@ -32,7 +32,8 @@ class C(BaseConstants):
     SpotTheDifference_template_path = "_templates/global/Change_detection.html"
     SpotTheDifference_template_Tournament_path = "_templates/global/Change_detection_Tournament.html"
     
-    Round_length = 120
+    #TODO: 120 sec
+    Round_length = 3600
     Timer_text = "Time left to complete this round:"
     Completion_redirect = 'https://www.wikipedia.org/' #TODO: adjust redirect
     
