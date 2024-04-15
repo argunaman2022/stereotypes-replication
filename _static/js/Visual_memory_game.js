@@ -65,12 +65,22 @@ var ImgSource4 = [
 ];
 var ImgSource5 = [
 
+  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Visual_memory_boxes/25.jpg",
+  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Visual_memory_boxes/26.jpg",
+  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Visual_memory_boxes/27.jpg",
+  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Visual_memory_boxes/28.jpg",
+  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Visual_memory_boxes/29.jpg",
+  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Visual_memory_boxes/30.png"
+  
+];
+var ImgSource6 = [
+
   "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Visual_memory_boxes/1.jpg",
-  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Visual_memory_boxes/2.jpg",
-  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Visual_memory_boxes/3.jpg",
-  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Visual_memory_boxes/4.jpg",
-  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Visual_memory_boxes/5.jpg",
-  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Visual_memory_boxes/6.png"
+  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Visual_memory_boxes/7.jpg",
+  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Visual_memory_boxes/13.jpg",
+  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Visual_memory_boxes/19.jpg",
+  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Visual_memory_boxes/25.jpg",
+  "https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Visual_memory_boxes/2.png"
   
 ];
 
@@ -118,6 +128,9 @@ function image_source() {
   }
   else if (BoxesSolved == 4) {
     return ImgSource5;
+  }
+  else if (BoxesSolved == 5) {
+    return ImgSource6;
   }
   else {
     // break out of loop and display final message
