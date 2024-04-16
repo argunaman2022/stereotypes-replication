@@ -132,6 +132,16 @@ function image_source() {
   else if (BoxesSolved == 5) {
     return ImgSource6;
   }
+  else if (BoxesSolved == 6) {
+    return ImgSource1}
+  else if (BoxesSolved == 7) {
+    return ImgSource2}
+  else if (BoxesSolved == 8) {
+    return ImgSource3}
+  else if (BoxesSolved == 9) {
+    return ImgSource4}
+  else if (BoxesSolved == 10) {
+    return ImgSource5}
   else {
     // break out of loop and display final message
     $("#transitionMessage").text("You completed all the boxes and finished this round before the timer ran out. You receive maximum points from this round! Congratulations!");

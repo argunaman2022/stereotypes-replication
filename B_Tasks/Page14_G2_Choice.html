@@ -1,5 +1,5 @@
 {{ block title }}
-{{Game_title}}: Tournament or Piece-rate?
+{{Game_title}}: Round 3. Tournament or Piece-rate?
 {{ endblock }}
 
 {{ block content }}
@@ -65,13 +65,13 @@
             <ol>
                 <li> If you choose to apply the <strong>Tournament-rate</strong> scheme to your round 1 score, you will receive either: </li>
                 <ul>
-                    <li><strong>{{C.Tournament_rate}}</strong>$ per correctly solved problem in round 1, if in round 1 you solved more problems correctly than any of the other 5 people in your group in that round.
+                    <li><strong>{{Tournament_rate}}</strong>$ per correctly solved problem in round 1, if in round 1 you solved more problems correctly than any of the other 5 people in your group in that round.
                     In case of two or more people having the same highest score, the winner is determined randomly.</li> 
 
                     <li><strong>0</strong>$ if in round 1 anyone else in your group answered more problems correctly than you in this round.</li>
                 </ul>
                 <li> If you choose to apply the <strong>Piece-rate</strong> scheme to your round 1 score, 
-                    you will receive <strong>{{C.Piece_rate}}</strong>$ per problem you solved correctly in round 1.
+                    you will receive <strong>{{Piece_rate}}</strong>$ per problem you solved correctly in round 1.
                      Your payment will not be influenced by the performance of others in your group.</li>
                 
                 </ol> 

@@ -14,10 +14,17 @@ class C(BaseConstants):
     PLAYERS_PER_GROUP = None
     NUM_ROUNDS = 1
     
-    Bonus_fee_max = 0.1 #TODO: adjust bonus fee
-    Participation_fee = 0.1 #TODO: adjust participation fee
-    Piece_rate = 0.1 #USD per correct answer #TODO: adjust
-    Tournament_rate = 0.2 #USD per correct answer #TODO: adjust
+    Bonus_fee_max = 1.2 # max bonus fee is 1.2 USD
+    Participation_fee = 1.2 # participation fee is 1.2 USD
+    
+    Piece_rate_Memory = 0.03 # Bonus_fee_max/36 #USD per correct answer 
+    Piece_rate_SpotTheDifference = 0.12 #1.2/6 #USD per correct answer 
+    Piece_rate_Quiz = 0.04 #1.2/30 #USD per correct answer 
+    
+    Tournament_rate_Memory = 6*Piece_rate_Memory #USD per correct answer 
+    Tournament_rate_SpotTheDifference = 6*Piece_rate_SpotTheDifference #USD per correct answer 
+    Tournament_rate_Quiz = 6*Piece_rate_Quiz #USD per correct answer 
+    
     
     # Paths
     Instructions_path = "_templates/global/Instructions.html"
@@ -66,7 +73,7 @@ class C(BaseConstants):
     '''
     
     Visual_memory_text = '''
-    For this round you will be given <b>2 minutes</b> to solve as many <b>Visual task problems</b> as you can.
+    For this round you will be given <b>2 minutes</b> to solve as many <b>Visual Memory problems</b> as you can.
    You will see a box with 12 cells.
    Behind each cell is a picture of an animal.
    There are 6 identical animals in these 12 cells.
@@ -83,7 +90,7 @@ class C(BaseConstants):
     
     Quiz_text = '''
     For this round you will be given <b>2 minutes</b> to solve as many <b>Quiz task problems</b> as you can.
-    There will be a maximum of 40 multiple-choice questions.
+    There will be a maximum of 30 multiple-choice questions.
     These questions are from various domains such as Art, Languages, Geography, Technology, History, etc.
     You have to choose the one correct answer out of 4 options.
     These answers become clickable only after 4 seconds of having seen the question.
@@ -93,7 +100,7 @@ class C(BaseConstants):
     An example problem is depicted below. Here, the correct answer is "F. Scott Fitzgerald"
     '''
     SpotTheDifference_text = '''
-    For this round you will be given <b>2 minutes</b> to solve as many <b>Spot-The-Difference task problems</b> as you can. 
+    For this round you will be given <b>2 minutes</b> to solve as many <b>SpotTheDifference task problems</b> as you can. 
     In this task, you will see two pictures. 
     The picture on the left and the picture on the right are very similar but there are 10 differences.
     Your task is to find these differences and click on them on the <b>right picture</b>.
@@ -110,25 +117,7 @@ class C(BaseConstants):
     Quiz_pic = 'https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/Quiz_pic.png' 
     SpotTheDifference_pic = 'https://raw.githubusercontent.com/argunaman2022/stereotypes-replication/master/_static/pics/ChangeDetection_pic.png'
     
-    ## Piece rate vs Tournament
-    Piece_rate_text = f'''<strong>Round 1. Payment information</strong>:
-    If this round is randomly chosen to determine your bonus payment,
-    then you will receive <strong>{Piece_rate}</strong>$ per problem you solve correctly in this round. 
-    Your payment is not influenced by the performance of others in your group.
-    Wrong answers do not decrease your payment. We call this payment scheme the <strong>"Piece-rate"</strong> payment, please remember this.
-    '''
-    
-    Tournament_text = f'''<strong>Round 2. Payment information</strong>: If this round is chosen to determine your bonus payment,
-        then you will receive either:
-        <ul>
-            <li> <strong>{Tournament_rate}</strong>$ per correctly solved problem in this round,
-    if you answer more problems correctly than any of the other 5 people in your group.
-    In case of two or more people having the same highest score, the winner is determined randomly.
-            <li> <strong>0</strong>$ per correctly solved problem,
-    if anyone else in your group answers more problems correctly than you in this round.
-    We call this payment scheme the <strong>"Tournament"</strong> payment, please remember this.
-        </ul>
-        '''
+
 class Subsession(BaseSubsession):
     pass
 
@@ -149,13 +138,15 @@ class Player(BasePlayer):
     ## First game
     game1_Piece_rate = models.IntegerField(initial=0) #correct answers
     game1_Tournament = models.IntegerField(initial=0) 
-    game1_Competition_Choice = models.BooleanField(choices = [[True, 'Tournament Rate'], [False, 'Piece Rate']],
-                                                   label='For this round, I choose')
+    game1_Competition_Choice = models.BooleanField(choices = [[True, 'I choose to apply the Tournament-rate to my round 1 score.'],
+                                                              [False, 'I choose to apply the Piece-rate to my round 1 score.']],
+                                                   label='For round 3:')
     ## Second Game
     game2_Piece_rate = models.IntegerField(initial=0) #correct answers
     game2_Tournament = models.IntegerField(initial=0) 
-    game2_Competition_Choice = models.BooleanField(choices = [[True, 'Tournament Rate'], [False, 'Piece Rate']],
-                                                label='For this round, I choose')
+    game2_Competition_Choice = models.BooleanField(choices = [[True, 'I choose to apply the Tournament-rate to my round 1 score.'],
+                                                              [False, 'I choose to apply the Piece-rate to my round 1 score.']],
+                                                   label='For round 3:')
 
     ## Extra fields for certain tasks
     Game1_attempts_R1 = models.IntegerField(initial=0) # logs the number of attempts in the math memory game
@@ -169,6 +160,21 @@ class Player(BasePlayer):
 
  
 #%% Functions
+def Payment_info(player, game):
+    assert game in ['MathMemory', 'VisualMemory', 'Quiz', 'SpotTheDifference']
+    ## Piece rate vs Tournament
+    if game in ['MathMemory', 'VisualMemory', 'Quiz']:
+        Piece_rate = C.Piece_rate_Memory
+        Tournament_rate = C.Tournament_rate_Memory
+    elif game in ['Quiz']:
+        Piece_rate = C.Piece_rate_Quiz
+        Tournament_rate = C.Tournament_rate_Quiz
+    elif game == 'SpotTheDifference':
+        Piece_rate = C.Piece_rate_SpotTheDifference
+        Tournament_rate = C.Tournament_rate_SpotTheDifference
+    
+    return Piece_rate, Tournament_rate
+
 def get_game(player):
     Treatment = player.participant.Treatment
     # split treatment based on _
@@ -247,6 +253,7 @@ class Page1_G1_R1_E(MyBasePage):
         variables['Game_explanation_text'] = game1_explanation_text
         variables['Game_explanation_pic'] = game1_explanation_pic
         variables['Game_title'] = Game1_title
+        variables['Payment_info'] = Payment_info(player, 'MathMemory')
         return variables
     
 class Page2_G1_R1(MyBasePage):
@@ -385,6 +392,7 @@ class Page7_G2_R1_E(MyBasePage):
         
         variables['Game_path'] = game2_path
         variables['Game_title'] = Game2_title
+        variables['Piece_rate'] = Payment_info(player, game2)[0]
         return variables
     
 
@@ -446,6 +454,8 @@ class Page10_G2_R2_E(MyBasePage):
         variables['Game_title'] = Game2_title
         
         variables['Game_path'] =game2_path 
+        variables['Tournament_rate'] = Payment_info(player, game2)[1]
+
         return variables
     
 class Page11_G2_R2(MyBasePage):
@@ -503,7 +513,9 @@ class Page13_G1_Choice(MyBasePage):
         variables['Game_explanation_pic'] =  C.MathMemory_pic
         variables['Prev_Score'] = player.game1_Piece_rate
         variables['Game_title'] = Game1_title
-        
+        variables['Piece_rate'] = Payment_info(player, game2)[0]
+        variables['Tournament_rate'] = Payment_info(player, game2)[1]
+
         return variables
     
 class Page14_G2_Choice(MyBasePage):
@@ -520,6 +532,8 @@ class Page14_G2_Choice(MyBasePage):
         variables['Game_explanation_pic'] =  game2_explanation_pic
         variables['Prev_Score'] = player.game2_Piece_rate
         variables['Game_title'] = Game2_title
+        variables['Piece_rate'] = Payment_info(player, game2)[0]
+        variables['Tournament_rate'] = Payment_info(player, game2)[1]
         return variables
     
     @staticmethod
@@ -527,6 +541,17 @@ class Page14_G2_Choice(MyBasePage):
         participant = player.participant
         # choose 1 of the 6 rounds randomly as the bonus_relevant_round
         bonus_relevant_round = np.random.choice([1, 2, 3, 4, 5, 6])
+        
+        game2 = participant.Treatment.split('_')[1]
+        if game2== 'VisualMemory':
+            game2_piece_rate = C.Piece_rate_Memory
+            game2_tournament_rate = C.Tournament_rate_Memory
+        elif game2 == 'Quiz':
+            game2_piece_rate = C.Piece_rate_Quiz
+            game2_tournament_rate = C.Tournament_rate_Quiz
+        elif game2 == 'SpotTheDifference':
+            game2_piece_rate = C.Piece_rate_SpotTheDifference
+            game2_tournament_rate = C.Tournament_rate_SpotTheDifference
 
         participant.bonus_relevant_round = bonus_relevant_round
         # if round is G1R1 or G2R1 multiply that with the piece rate with the number of correct solutions in those rounds
@@ -534,49 +559,49 @@ class Page14_G2_Choice(MyBasePage):
         # if round is G1R3 or G2R3 multiply that with the piece rate if the player has chosen Piece rate in these rounds,
         # else ex post matching based on win status
         if bonus_relevant_round == 1:
-            participant.bonus_payoff = round(player.game1_Piece_rate*C.Piece_rate, 2)
+            participant.bonus_payoff = round(player.game1_Piece_rate*C.Piece_rate_Memory, 2)
             participant.score = player.game1_Piece_rate
             participant.bonus_message = f'''Round {bonus_relevant_round} was randomly selected to be the bonus-relevant round.
             In this round you completed {participant.score} questions correctly.
-            As a result your bonus payment is {participant.bonus_payoff}$ = {participant.bonus_payoff/C.Piece_rate} * {C.Piece_rate}$.'''
+            As a result your bonus payment is {participant.bonus_payoff}$ = {participant.bonus_payoff/C.Piece_rate_Memory} * {C.Piece_rate_Memory}$.'''
         elif bonus_relevant_round == 2:
             participant.score = player.game1_Tournament
             participant.bonus_message = f'''Round {bonus_relevant_round} was randomly selected to be the bonus-relevant round.
             In this round you completed {participant.score} questions correctly. As a result,
-            Once all the participants have finished, you will earn {participant.score*C.Tournament_rate}$ if you have answered more questions correctly than the other 5 people in your group.'''
+            Once all the participants have finished, you will earn {participant.score*C.Tournament_rate_Memory}$ if you have answered more questions correctly than the other 5 people in your group.'''
         elif bonus_relevant_round == 3:
-            participant.bonus_payoff = round(player.game2_Piece_rate*C.Piece_rate, 2)
+            participant.bonus_payoff = round(player.game2_Piece_rate*game2_piece_rate, 2)
             participant.score = player.game2_Piece_rate
             participant.bonus_message = f'''Round {bonus_relevant_round} was randomly selected to be the bonus-relevant round.
             In this round you completed {participant.score} questions correctly.
-            As a result your bonus payment is {participant.bonus_payoff}$ = {participant.score} * {C.Piece_rate}$.'''
+            As a result your bonus payment is {participant.bonus_payoff}$ = {participant.score} * {game2_piece_rate}$.'''
         elif bonus_relevant_round == 4:
             participant.score = player.game2_Tournament
             participant.bonus_message = f'''Round {bonus_relevant_round} was randomly selected to be the bonus-relevant round.
             In this round you completed {participant.score} questions correctly. As a result,
-            Once all the participants have finished, you will earn {participant.score*C.Tournament_rate}$ if you have answered more questions correctly than the other 5 people in your group.'''            
+            Once all the participants have finished, you will earn {participant.score*game2_tournament_rate}$ if you have answered more questions correctly than the other 5 people in your group.'''            
         elif bonus_relevant_round == 5 and player.game1_Competition_Choice:
             participant.score = player.game1_Piece_rate
             participant.bonus_message = f'''Round {bonus_relevant_round} was randomly selected to be the bonus-relevant round.
             In round 1 of Game 1 you completed {participant.score} questions correctly and you chose to apply Tournament rate to your round 1 performance.
-            Once all the participants have finished, you will earn {participant.score*C.Tournament_rate}$ if you have answered more questions correctly than the other 5 people in your group in this round.'''            
+            Once all the participants have finished, you will earn {participant.score*C.Tournament_rate_Memory}$ if you have answered more questions correctly than the other 5 people in your group in this round.'''            
         elif bonus_relevant_round == 5 and not player.game1_Competition_Choice:
-            participant.bonus_payoff = round(player.game1_Piece_rate*C.Piece_rate, 2)
+            participant.bonus_payoff = round(player.game1_Piece_rate*C.Piece_rate_Memory, 2)
             participant.score = player.game1_Piece_rate
             participant.bonus_message = f'''Round {bonus_relevant_round} was randomly selected to be the bonus-relevant round.
             In round 1 of Game 1 you completed {participant.score} questions correctly and you chose to apply Piece-rate to your round 1 performance.
-            As a result your bonus payment is {participant.bonus_payoff}$ = {participant.bonus_payoff/C.Piece_rate} * {C.Piece_rate}$..'''            
+            As a result your bonus payment is {participant.bonus_payoff}$ = {participant.bonus_payoff/C.Piece_rate_Memory} * {C.Piece_rate_Memory}$..'''            
         elif bonus_relevant_round == 6 and player.game2_Competition_Choice:
             participant.score = player.game2_Piece_rate
             participant.bonus_message = f'''Round {bonus_relevant_round} was randomly selected to be the bonus-relevant round.
             In round 1 of Game 2 you completed {participant.score} questions correctly and you chose to apply Tournament rate to your round 1 performance. As a result,
-            Once all the participants have finished, you will earn {participant.score*C.Tournament_rate}$ if you have answered more questions correctly than the other 5 people in your group in this round.'''            
+            Once all the participants have finished, you will earn {participant.score*game2_tournament_rate}$ if you have answered more questions correctly than the other 5 people in your group in this round.'''            
         elif bonus_relevant_round == 6 and not player.game2_Competition_Choice:
-            participant.bonus_payoff = round(player.game2_Piece_rate*C.Piece_rate, 2)
+            participant.bonus_payoff = round(player.game2_Piece_rate*game2_piece_rate, 2)
             participant.score = player.game2_Piece_rate
             participant.bonus_message = f'''Round {bonus_relevant_round} was randomly selected to be the bonus-relevant round.
             In round 1 of Game 2 you completed {participant.score} questions correctly and you chose to apply Piece-rate to your round 1 performance.
-            As a result your bonus payment is {participant.bonus_payoff}$ = {participant.bonus_payoff/C.Piece_rate} * {C.Piece_rate}$..'''      
+            As a result your bonus payment is {participant.bonus_payoff}$ = {participant.bonus_payoff/game2_piece_rate} * {game2_piece_rate}$..'''      
                     
 
         

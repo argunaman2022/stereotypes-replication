@@ -4,7 +4,7 @@ var ImgOpened = ""; // Image source of the first opened card
 var Counter = 0;    // Number of player moves
 var ImgFound = 0;   // Number of matching pairs found
 var BoxesSolved = 0; // Number of boxes solved
-var Max_boxes = 6 // Number of boxes to solve to complete the game 
+var Max_boxes = 10 // Number of boxes to solve to complete the game 
 let game_field_name = js_vars.game_field_name;
 console.log('math memory loaded')
 
@@ -196,6 +196,16 @@ function image_source() {
   else if (BoxesSolved == 5) {
     return ImgSource6;
   }
+  else if (BoxesSolved == 6) {
+    return ImgSource1}
+  else if (BoxesSolved == 7) {
+    return ImgSource2}
+  else if (BoxesSolved == 8) {
+    return ImgSource3}
+  else if (BoxesSolved == 9) {
+    return ImgSource4}
+  else if (BoxesSolved == 10) {
+    return ImgSource5}
 
   else {
     // break out of loop and display final message

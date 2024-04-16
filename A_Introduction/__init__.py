@@ -128,11 +128,16 @@ class Player(BasePlayer):
         widget=widgets.RadioSelect)
     
     Attention_1 = models.BooleanField(choices=[
+            [False, 'Canada'],
+            [False, 'USA'],
             [False, 'Austria'],
             [False, 'Germany'],
             [False, 'Switzerland'],
             [True, 'Russia'], 
-            [False, 'India'] ],
+            [False, 'India'],
+            [False, 'Australia'],
+            [False, 'China'],
+            ],
         label='Choose the country that was mentioned in the instructions above.',
         widget=widgets.RadioSelect)
     HoneyPot = models.StringField(label='Please fill in some sentences here', blank=True) #honeypot to catch bots

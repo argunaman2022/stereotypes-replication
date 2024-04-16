@@ -10,9 +10,22 @@
 
 
     <p>
-        This is the round 2 of the {{Game_title}}. In this round, you will play the game with the same group as in round 1. The only difference is the payment rule.
+        <!-- TODO: make sure it is not game game. -->
+        This is round 2 of the {{Game_title}}. The only difference to the previous round is the payment rule.
         <br><br>
-        {{C.Tournament_text}}
+        <div>
+            <strong>Round 2. Payment information</strong>: If this round is chosen to determine your bonus payment,
+        then you will receive either:
+        <ul>
+            <li> <strong>{{C.Tournament_rate_Memory}}</strong>$ per correctly solved problem in this round,
+    if you answer more problems correctly than any of the other 5 people in your group.
+    In case of two or more people having the same highest score, the winner is determined randomly.
+            <li> <strong>0</strong>$ per correctly solved problem,
+    if anyone else in your group answers more problems correctly than you in this round.
+    We call this payment scheme the <strong>"Tournament"</strong> payment, please remember this.
+        </ul>
+
+        </div>
 
         <div class="card bg-light m-3">
             <div class="card-body">
