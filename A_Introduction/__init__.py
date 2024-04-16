@@ -22,9 +22,9 @@ class C(BaseConstants):
     Participation_fee = 1.2 
     Bonus_fee_max = 1.2 
     # Prolific links:
-    Completion_redirect = "https://www.wikipedia.org/" #TODO: adjust completion redirect
-    Reject_redirect = "https://www.wikipedia.org/" #TODO: adjust reject redirect
-    Return_redirect = "https://www.wikipedia.org/" #TODO: adjust return redirect
+    Completion_redirect = "https://app.prolific.com/submissions/complete?cc=CJVUV8Y1"
+    Reject_redirect = "https://app.prolific.com/submissions/complete?cc=C13ABF98"
+    Return_redirect = "https://app.prolific.com/submissions/complete?cc=CWE4UX3Q"
     
     Instructions_path = "_templates/global/Instructions.html"
     Quit_study_text_path = "_templates/global/Quit_study_text.html"

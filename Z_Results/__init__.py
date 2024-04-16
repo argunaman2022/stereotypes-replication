@@ -8,10 +8,10 @@ class C(BaseConstants):
     PLAYERS_PER_GROUP = None
     NUM_ROUNDS = 1
     
-    # Prolific links, gotten from the study page on prolific
-    Completion_redirect = 'https://www.wikipedia.org/' #TODO: adjust redirect
-    Failure_redirect = 'https://www.wikipedia.org/' #TODO: adjust redirect
-    Return_redirect = 'https://www.wikipedia.org/' #TODO: adjust redirect
+    # Prolific links:
+    Completion_redirect = "https://app.prolific.com/submissions/complete?cc=CJVUV8Y1"
+    Reject_redirect = "https://app.prolific.com/submissions/complete?cc=C13ABF98"
+    Return_redirect = "https://app.prolific.com/submissions/complete?cc=CWE4UX3Q"
 
     Instructions_path = "_templates/global/Instructions.html"
     Quit_study_text_path = "_templates/global/Quit_study_text.html"

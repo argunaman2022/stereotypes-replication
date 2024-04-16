@@ -8,7 +8,6 @@ This is the main survey app. It contains
 2. One attention check.
 - You can additionally calculate payoffs and save them at a participant field.
 '''
-#TODO: set the otree produiction value to True in otreehub
 class C(BaseConstants):
     NAME_IN_URL = 'Study_Name'
     PLAYERS_PER_GROUP = None
@@ -30,18 +29,20 @@ class C(BaseConstants):
     Instructions_path = "_templates/global/Instructions.html"
     Quit_study_text_path = "_templates/global/Quit_study_text.html"
 
-    Return_redirect = "https://www.wikipedia.org/" #TODO: adjust redirect
+    # Prolific links:
+    Completion_redirect = "https://app.prolific.com/submissions/complete?cc=CJVUV8Y1"
+    Reject_redirect = "https://app.prolific.com/submissions/complete?cc=C13ABF98"
+    Return_redirect = "https://app.prolific.com/submissions/complete?cc=CWE4UX3Q"
     
+        
     Math_memory_template_path = "_templates/global/Math_memory.html"
     Visual_memory_template_path = "_templates/global/Visual_memory.html"
     Quiz_template_path = "_templates/global/Quiz.html"
     SpotTheDifference_template_path = "_templates/global/Change_detection.html"
     SpotTheDifference_template_Tournament_path = "_templates/global/Change_detection_Tournament.html"
     
-    #TODO: 120 sec
     Round_length = 120
     Timer_text = "Time left to complete this round:"
-    Completion_redirect = 'https://www.wikipedia.org/' #TODO: adjust redirect
     
     
     # Game explanation texts
