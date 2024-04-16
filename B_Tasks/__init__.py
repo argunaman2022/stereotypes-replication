@@ -9,7 +9,6 @@ This is the main survey app. It contains
 - You can additionally calculate payoffs and save them at a participant field.
 '''
 #TODO: set the otree produiction value to True in otreehub
-# TODO:scoring of each game (missing: change detection)
 class C(BaseConstants):
     NAME_IN_URL = 'Study_Name'
     PLAYERS_PER_GROUP = None
@@ -17,8 +16,8 @@ class C(BaseConstants):
     
     Bonus_fee_max = 0.1 #TODO: adjust bonus fee
     Participation_fee = 0.1 #TODO: adjust participation fee
-    Piece_rate = 0.1 #USD per correct answer #TODO: fix
-    Tournament_rate = 0.2 #USD per correct answer #TODO: fix
+    Piece_rate = 0.1 #USD per correct answer #TODO: adjust
+    Tournament_rate = 0.2 #USD per correct answer #TODO: adjust
     
     # Paths
     Instructions_path = "_templates/global/Instructions.html"
@@ -159,7 +158,6 @@ class Player(BasePlayer):
                                                 label='For this round, I choose')
 
     ## Extra fields for certain tasks
-    #TODO: ensure this is called only in math memory and write js code to save the values
     Game1_attempts_R1 = models.IntegerField(initial=0) # logs the number of attempts in the math memory game
     Game1_attempts_R2 = models.IntegerField(initial=0) # logs the number of attempts in the math memory game
     #The Game2 attempts are only relevant in the visual memory game
@@ -167,7 +165,7 @@ class Player(BasePlayer):
     Game2_attempts_R2 = models.IntegerField(initial=0) # logs the number of attempts in the math memory game
     
     # Whether the player clicked out of the page
-    blur_event_counts = models.StringField(initial=0) # logs how often user clicked out of the page 
+    blur_event_counts = models.StringField(initial=0, blank=True) # logs how often user clicked out of the page 
 
  
 #%% Functions
@@ -529,6 +527,7 @@ class Page14_G2_Choice(MyBasePage):
         participant = player.participant
         # choose 1 of the 6 rounds randomly as the bonus_relevant_round
         bonus_relevant_round = np.random.choice([1, 2, 3, 4, 5, 6])
+
         participant.bonus_relevant_round = bonus_relevant_round
         # if round is G1R1 or G2R1 multiply that with the piece rate with the number of correct solutions in those rounds
         # if round is G1R2 or G2R2 ex post matching based on win status
@@ -561,7 +560,7 @@ class Page14_G2_Choice(MyBasePage):
             participant.bonus_message = f'''Round {bonus_relevant_round} was randomly selected to be the bonus-relevant round.
             In round 1 of Game 1 you completed {participant.score} questions correctly and you chose to apply Tournament rate to your round 1 performance.
             Once all the participants have finished, you will earn {participant.score*C.Tournament_rate}$ if you have answered more questions correctly than the other 5 people in your group in this round.'''            
-        elif bonus_relevant_round == 5 and not player.game2_Competition_Choice:
+        elif bonus_relevant_round == 5 and not player.game1_Competition_Choice:
             participant.bonus_payoff = round(player.game1_Piece_rate*C.Piece_rate, 2)
             participant.score = player.game1_Piece_rate
             participant.bonus_message = f'''Round {bonus_relevant_round} was randomly selected to be the bonus-relevant round.

@@ -1,5 +1,4 @@
 from otree.api import *
-#TODO: calculate payoffs and stuff
 
 doc = """
 Your app description
@@ -27,7 +26,7 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):
-    blur_event_counts = models.StringField(initial=0) # logs how often user clicked out of the page #TODO: ensure that this is added to all the pages
+    blur_event_counts = models.StringField(initial=0, blank=True) # logs how often user clicked out of the page 
 
 
 

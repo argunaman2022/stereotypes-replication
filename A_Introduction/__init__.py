@@ -98,7 +98,7 @@ class Player(BasePlayer):
     #browser used by the participant This variable is saved in the demographics page.
     browser = models.StringField(blank=True) 
     # logs how often user clicked out of the page 
-    blur_event_counts = models.StringField(initial=0) 
+    blur_event_counts = models.StringField(initial=0, blank=True) 
     
     'Comprehension and attention checks'
     #whether the player got the comprehension questions rigt at the first try

@@ -2,7 +2,7 @@ from os import environ
 
 SESSION_CONFIGS = [
     #TODO: remove pilot1 from the app_sequence
-    dict(name='Study', app_sequence=['A_Introduction','B_Tasks',  'Pilot', 'Z_Results'], num_demo_participants=200,
+    dict(name='Study', app_sequence=['A_Introduction','B_Tasks',  'Pilot', 'Z_Results'], num_demo_participants=100,
          completionlink='prolific completion link!!!!!!'), #TODO: add the proper completion link from prolific
 
 ]
@@ -16,9 +16,8 @@ ROOMS = [
     dict( name = 'Survey', display_name = 'Survey'),
 ]
 
-
 SESSION_CONFIG_DEFAULTS = dict(
-    real_world_currency_per_point=1.00, participation_fee=0.00, doc=""
+    real_world_currency_per_point=1.00, participation_fee=0.00, doc="", use_browser_bots=False,
 )
 PARTICIPANT_FIELDS = [
     'Allowed','Comprehension_passed', 'Attention_passed',
