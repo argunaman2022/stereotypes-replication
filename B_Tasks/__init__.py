@@ -39,7 +39,7 @@ class C(BaseConstants):
     SpotTheDifference_template_Tournament_path = "_templates/global/Change_detection_Tournament.html"
     
     #TODO: 120 sec
-    Round_length = 3600
+    Round_length = 120
     Timer_text = "Time left to complete this round:"
     Completion_redirect = 'https://www.wikipedia.org/' #TODO: adjust redirect
     
@@ -163,16 +163,15 @@ class Player(BasePlayer):
 def Payment_info(player, game):
     assert game in ['MathMemory', 'VisualMemory', 'Quiz', 'SpotTheDifference']
     ## Piece rate vs Tournament
-    if game in ['MathMemory', 'VisualMemory', 'Quiz']:
+    if game in ['MathMemory', 'VisualMemory']:
         Piece_rate = C.Piece_rate_Memory
         Tournament_rate = C.Tournament_rate_Memory
-    elif game in ['Quiz']:
+    elif game == 'Quiz':
         Piece_rate = C.Piece_rate_Quiz
         Tournament_rate = C.Tournament_rate_Quiz
     elif game == 'SpotTheDifference':
         Piece_rate = C.Piece_rate_SpotTheDifference
         Tournament_rate = C.Tournament_rate_SpotTheDifference
-    
     return Piece_rate, Tournament_rate
 
 def get_game(player):
@@ -568,7 +567,7 @@ class Page14_G2_Choice(MyBasePage):
             participant.score = player.game1_Tournament
             participant.bonus_message = f'''Round {bonus_relevant_round} was randomly selected to be the bonus-relevant round.
             In this round you completed {participant.score} questions correctly. As a result,
-            Once all the participants have finished, you will earn {participant.score*C.Tournament_rate_Memory}$ if you have answered more questions correctly than the other 5 people in your group.'''
+            Once all the participants have finished, you will earn {round(participant.score*C.Tournament_rate_Memory,2)}$ if you have answered more questions correctly than the other 5 people in your group.'''
         elif bonus_relevant_round == 3:
             participant.bonus_payoff = round(player.game2_Piece_rate*game2_piece_rate, 2)
             participant.score = player.game2_Piece_rate
@@ -579,12 +578,12 @@ class Page14_G2_Choice(MyBasePage):
             participant.score = player.game2_Tournament
             participant.bonus_message = f'''Round {bonus_relevant_round} was randomly selected to be the bonus-relevant round.
             In this round you completed {participant.score} questions correctly. As a result,
-            Once all the participants have finished, you will earn {participant.score*game2_tournament_rate}$ if you have answered more questions correctly than the other 5 people in your group.'''            
+            Once all the participants have finished, you will earn {round(participant.score*game2_tournament_rate,2)}$ if you have answered more questions correctly than the other 5 people in your group.'''            
         elif bonus_relevant_round == 5 and player.game1_Competition_Choice:
             participant.score = player.game1_Piece_rate
             participant.bonus_message = f'''Round {bonus_relevant_round} was randomly selected to be the bonus-relevant round.
             In round 1 of Game 1 you completed {participant.score} questions correctly and you chose to apply Tournament rate to your round 1 performance.
-            Once all the participants have finished, you will earn {participant.score*C.Tournament_rate_Memory}$ if you have answered more questions correctly than the other 5 people in your group in this round.'''            
+            Once all the participants have finished, you will earn {round(participant.score*C.Tournament_rate_Memory,2)}$ if you have answered more questions correctly than the other 5 people in your group in this round.'''            
         elif bonus_relevant_round == 5 and not player.game1_Competition_Choice:
             participant.bonus_payoff = round(player.game1_Piece_rate*C.Piece_rate_Memory, 2)
             participant.score = player.game1_Piece_rate
@@ -595,7 +594,7 @@ class Page14_G2_Choice(MyBasePage):
             participant.score = player.game2_Piece_rate
             participant.bonus_message = f'''Round {bonus_relevant_round} was randomly selected to be the bonus-relevant round.
             In round 1 of Game 2 you completed {participant.score} questions correctly and you chose to apply Tournament rate to your round 1 performance. As a result,
-            Once all the participants have finished, you will earn {participant.score*game2_tournament_rate}$ if you have answered more questions correctly than the other 5 people in your group in this round.'''            
+            Once all the participants have finished, you will earn {round(participant.score*game2_tournament_rate,2)}$ if you have answered more questions correctly than the other 5 people in your group in this round.'''            
         elif bonus_relevant_round == 6 and not player.game2_Competition_Choice:
             participant.bonus_payoff = round(player.game2_Piece_rate*game2_piece_rate, 2)
             participant.score = player.game2_Piece_rate

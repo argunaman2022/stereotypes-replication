@@ -19,8 +19,8 @@ class C(BaseConstants):
     PLAYERS_PER_GROUP = None
     NUM_ROUNDS = 1
     
-    Participation_fee = 0.1 #TODO: adjust participation fee
-    Bonus_fee_max = 0.1 #TODO: adjust bonus fee
+    Participation_fee = 1.2 
+    Bonus_fee_max = 1.2 
     # Prolific links:
     Completion_redirect = "https://www.wikipedia.org/" #TODO: adjust completion redirect
     Reject_redirect = "https://www.wikipedia.org/" #TODO: adjust reject redirect
