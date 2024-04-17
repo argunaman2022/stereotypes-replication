@@ -19,7 +19,7 @@ class C(BaseConstants):
     PLAYERS_PER_GROUP = None
     NUM_ROUNDS = 1
     
-    Participation_fee = 1.2 
+    Participation_fee = 1.87 
     Bonus_fee_max = 1.2 
     # Prolific links:
     Completion_redirect = "https://app.prolific.com/submissions/complete?cc=CJVUV8Y1"

@@ -13,8 +13,8 @@ class C(BaseConstants):
     PLAYERS_PER_GROUP = None
     NUM_ROUNDS = 1
     
-    Bonus_fee_max = 1.2 # max bonus fee is 1.2 USD
-    Participation_fee = 1.2 # participation fee is 1.2 USD
+    Participation_fee = 1.87 
+    Bonus_fee_max = 1.2 
     
     Piece_rate_Memory = 0.03 # Bonus_fee_max/36 #USD per correct answer 
     Piece_rate_SpotTheDifference = 0.12 #1.2/6 #USD per correct answer 
