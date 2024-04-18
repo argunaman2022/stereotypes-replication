@@ -8,6 +8,7 @@ This is the main survey app. It contains
 2. One attention check.
 - You can additionally calculate payoffs and save them at a participant field.
 '''
+
 class C(BaseConstants):
     NAME_IN_URL = 'Study_Name'
     PLAYERS_PER_GROUP = None
